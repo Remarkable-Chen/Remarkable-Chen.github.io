@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,TensorFlow,交通标志,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 ​    交通标志是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文基于谷歌的深度学习框架tensorflow完成数据集的训练与测试，达到识别交通标志的效果。目前做到的准确率为0.96。本文适合于对深度学习有一定了解，最好用过深度学习框架的童鞋。">
+<meta name="keywords" content="Python,TensorFlow,交通标志">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无人驾驶环境感知--基于tensorflow的交通标志识别（0.96）">
+<meta property="og:url" content="https://remarkable-chen.github.io/year/02/08/无人驾驶感知--基于tensorflow的交通标志识别（0.96）/index.html">
+<meta property="og:site_name" content="July">
+<meta property="og:description" content="前言 ​    交通标志是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文基于谷歌的深度学习框架tensorflow完成数据集的训练与测试，达到识别交通标志的效果。目前做到的准确率为0.96。本文适合于对深度学习有一定了解，最好用过深度学习框架的童鞋。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/33e57e2e86401d97cb5e31057adab160.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/097ac53e4d63d0f67832194acff1eeb8.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/37b34bb6ba7dc31430d303326fb767cc.JPG">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/28f95b4c283234da42897693e14025dd.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/f3b93381fd3c5563f4df8b00020db4d7.jpg">
+<meta property="og:updated_time" content="2019-05-13T05:47:39.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无人驾驶环境感知--基于tensorflow的交通标志识别（0.96）">
+<meta name="twitter:description" content="前言 ​    交通标志是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文基于谷歌的深度学习框架tensorflow完成数据集的训练与测试，达到识别交通标志的效果。目前做到的准确率为0.96。本文适合于对深度学习有一定了解，最好用过深度学习框架的童鞋。">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/33e57e2e86401d97cb5e31057adab160.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://remarkable-chen.github.io/year/02/08/无人驾驶感知--基于tensorflow的交通标志识别（0.96）/">
+
+
+
+
+
+  <title>无人驾驶环境感知--基于tensorflow的交通标志识别（0.96） | July</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">July</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just u like yourself。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/year/02/08/无人驾驶感知--基于tensorflow的交通标志识别（0.96）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">无人驾驶环境感知--基于tensorflow的交通标志识别（0.96）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-08T16:49:16+08:00">
+                2019-02-08
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/无人驾驶环境感知/" itemprop="url" rel="index">
+                    <span itemprop="name">无人驾驶环境感知</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><hr>
+<p>​    交通标志是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文基于谷歌的深度学习框架tensorflow完成数据集的训练与测试，达到识别交通标志的效果。目前做到的准确率为0.96。本文适合于对深度学习有一定了解，最好用过深度学习框架的童鞋。</p>
+<a id="more"></a>
+
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><hr>
+<h4 id="1-导入库"><a href="#1-导入库" class="headerlink" title="1.导入库"></a>1.导入库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> util</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line"><span class="keyword">from</span> tensorflow.contrib.layers <span class="keyword">import</span> flatten</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果没有对应的库，请自行pip安装。</p>
+<h4 id="2-载入数据"><a href="#2-载入数据" class="headerlink" title="2.载入数据"></a>2.载入数据</h4><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###载入数据</span></span><br><span class="line">training_file = <span class="string">'data/train.p'</span> <span class="comment">#一种可以传输或存储的格式</span></span><br><span class="line">validation_file=<span class="string">'data/valid.p'</span></span><br><span class="line">testing_file = <span class="string">'data/test.p'</span></span><br><span class="line"><span class="keyword">with</span> open(training_file, mode=<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    train = pickle.load(f) <span class="comment">#从“文件”中，读取字符串，将它们反序列化转换为Python的数据对象，可以正常像操作数据类型的这些方法来操作它们.</span></span><br><span class="line"><span class="keyword">with</span> open(validation_file, mode=<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    valid = pickle.load(f)</span><br><span class="line"><span class="keyword">with</span> open(testing_file, mode=<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    test = pickle.load(f)    </span><br><span class="line">X_train, y_train = train[<span class="string">'features'</span>], train[<span class="string">'labels'</span>]</span><br><span class="line">X_valid, y_valid = valid[<span class="string">'features'</span>], valid[<span class="string">'labels'</span>]</span><br><span class="line">X_test, y_test = test[<span class="string">'features'</span>], test[<span class="string">'labels'</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>train.p文件类似于一个文件夹的压缩包，取代了传统的大文件夹里面套小文件夹（标签），小文件夹里面存放若干图片读取的麻烦。</li>
+<li>如果想要保存一些结果或者数据以方便后续使用，可以使用pickle模块。该模块接受几乎所有的python对象，并且将其转换成字符串表，该过程叫做封装。从字符串中重构该对象，称为拆封。这些字符串表示可以方便的存储和传输。由于上述特殊性，自然要用pickle模块来读取。</li>
+<li>X_train是一个列表，里面存放所有的训练集图片。</li>
+<li>y_train是一个列表，里面存放的均为数字，个数与X_train里面的图片数一致，数字的大小为图片对应的标签。</li>
+</ul>
+<h4 id="3-探索数据"><a href="#3-探索数据" class="headerlink" title="3.探索数据"></a>3.探索数据</h4><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###探索数据</span></span><br><span class="line">n_train = X_train.shape[<span class="number">0</span>] <span class="comment">#训练集照片总数</span></span><br><span class="line">n_validation = X_valid.shape[<span class="number">0</span>]  <span class="comment">#验证集照片总数</span></span><br><span class="line">n_test = X_test.shape[<span class="number">0</span>] <span class="comment">#测试集照片总数</span></span><br><span class="line">image_shape = X_train.shape[<span class="number">1</span>:] <span class="comment">#训练集每张图片大小</span></span><br><span class="line">n_classes = len(set(y_train)) <span class="comment">#标签数，即训练集所有照片被分成43类，</span></span><br><span class="line">                              <span class="comment">#每一类为同一种交通标志，只有细微差异。</span></span><br><span class="line">print(<span class="string">"Number of training examples ="</span>, n_train)</span><br><span class="line">print(<span class="string">"Number of validation examples ="</span>, n_validation)</span><br><span class="line">print(<span class="string">"Number of testing examples ="</span>, n_test)</span><br><span class="line">print(<span class="string">"Image data shape ="</span>, image_shape)</span><br><span class="line">print(<span class="string">"Number of classes ="</span>, n_classes)</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Number of training examples = <span class="number">34799</span></span><br><span class="line">Number of validation examples = <span class="number">4410</span></span><br><span class="line">Number of testing examples = <span class="number">12630</span></span><br><span class="line">Image data shape = (<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>)</span><br><span class="line">Number of classes = <span class="number">43</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>​    关于训练集、验证集、测试集。有个不恰当的比喻，深度学习好比高考。训练集为前期的输入，即用家庭作业巩固学习内容；验证集为阶段性测验，用来检验所学的成果并作出修正；测试集则是最后的高考，一局出结果。所以基本现象是，准确率 训练集&gt;验证集&gt;测试集。</p>
+<h4 id="4-数据预处理"><a href="#4-数据预处理" class="headerlink" title="4.数据预处理"></a>4.数据预处理</h4><p><strong>功能：</strong>规范化</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###数据预处理</span></span><br><span class="line"><span class="comment">#规范化</span></span><br><span class="line">X_train_normalised = util.normalise_images(X_train, X_train)</span><br><span class="line">X_valid_normalised = util.normalise_images(X_valid, X_train)</span><br></pre></td></tr></table></figure>
+
+<p><strong>util.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalise_images</span><span class="params">(imgs, dist)</span>:</span></span><br><span class="line">    std = np.std(dist) <span class="comment">#计算每一个维度上数据的标准差</span></span><br><span class="line">    <span class="comment">#std = 128</span></span><br><span class="line">    mean = np.mean(dist) <span class="comment">#计算每一个维度上数据的均值</span></span><br><span class="line">    <span class="comment">#mean = 128</span></span><br><span class="line">    <span class="keyword">return</span> (imgs - mean) / std <span class="comment">#在每一个维度上都减去该均值。</span></span><br><span class="line">                                <span class="comment">#然后在数据的每一维度上除以该维度上数据的标准差。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>机器学习里有一句名言：数据和特征决定了机器学习的上限，而模型和算法的应用只是让我们逼近这个上限。这个说法形象且深刻的提出前期数据处理和特征分析的重要性。</p>
+</blockquote>
+<p>​    数据预处理中，标准的第一步是数据归一化。虽然这里有一系列可行的方法，但是这一步通常是根据数据的具体情况而明确选择的。数据归一化常用的方法包含如下几种：</p>
+<ul>
+<li>简单缩放</li>
+<li>规范化(使数据集中所有特征都具有零均值和单位方差)</li>
+</ul>
+<p><strong>简单缩放</strong></p>
+<p>​    为了使得最终的数据向量落在 [0，1] 或 [ -1，1] 的区间内（根据数据情况而定）。</p>
+<p>​    在处理自然图像时，我们获得的像素值在 [0，255] 区间中，常用的处理是将这些像素值 直接除以 255，使它们 缩放到 [0，1] 中。</p>
+<p><strong>规范化</strong></p>
+<p>​    规范化指的是（独立地）使得数据的每一个维度具有零均值和单位方差。这是归一化中最常见的方法并被广泛地使用（例如，在使用支持向量机（SVM）时，特征标准化常被建议用作预处理的一部分）。在实际应用中，特征标准化的具体做法是：首先计算每一个维度上数据的均值（使用全体数据计算），之后在每一个维度上都减去该均值。下一步便是在数据的每一维度上除以该维度上数据的标准差。</p>
+<h4 id="5-设计神经网络层"><a href="#5-设计神经网络层" class="headerlink" title="5.设计神经网络层"></a>5.设计神经网络层</h4><p><strong>功能：</strong></p>
+<ul>
+<li><p>深度学习分为深层神经网络、卷积神经网络、循环神经网络。其中深层神经网络（全连接层）最为常见，卷积神经网络适合用来进行图像处理，循环神经网络适合进行自然语言处理。</p>
+</li>
+<li><p>这里是基于经典卷积网络模型——LeNet-5模型。</p>
+</li>
+<li><p>我使用的是3层的卷积层加上3个全连接层，准确率达到0.96；之前还使用过一个全连接层，准确率达到0.48；还有2层的卷积层加上4个全连接层，准确率达到0.93。</p>
+</li>
+</ul>
+<h5 id="5-1张量"><a href="#5-1张量" class="headerlink" title="5.1张量"></a>5.1张量</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">inputs = tf.placeholder(tf.float32,shape = [<span class="literal">None</span>,<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>], name = <span class="string">'inputs'</span>) <span class="comment">#定义张量inputs</span></span><br><span class="line">                                                                              <span class="comment">#保存了三个属性：类型、维度、类型</span></span><br><span class="line">labels = tf.placeholder(tf.int32, shape = [<span class="literal">None</span>], name = <span class="string">'labels'</span>) <span class="comment">#定义张量labels，是预测结果</span></span><br><span class="line">one_hot_y = tf.one_hot(labels,n_classes) <span class="comment">#独热标签</span></span><br><span class="line">dropout_placeholder_conv = tf.placeholder(tf.float32) <span class="comment">#定义张量dropout_placeholder_conv</span></span><br><span class="line">dropout_placeholder_fc = tf.placeholder(tf.float32) <span class="comment">#定义张量dropout_placeholder_fc</span></span><br><span class="line"><span class="comment">##前向传播</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>Tensorflow中的张量和Numpy中的数组不同，Tensorflow计算的结果不是一个具体的数字，而是一个张量的结构。</li>
+<li>独热编码一般是在有监督学习中对数据集进行标注时候使用的，指的是在分类问题中，将存在数据类别的那一类用X表示，不存在的用Y表示，这里的X常常是1， Y常常是0。</li>
+</ul>
+<h5 id="5-2-前向传播"><a href="#5-2-前向传播" class="headerlink" title="5.2 前向传播"></a>5.2 前向传播</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mymodel</span><span class="params">(images,dropout_conv_pct,dropout_fc_pct)</span>:</span></span><br><span class="line">    mu = <span class="number">0</span></span><br><span class="line">    sigma = <span class="number">0.1</span></span><br><span class="line">    </span><br><span class="line">    prev_conv_layer = inputs</span><br><span class="line">    input_img_dimensions = [<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>]</span><br><span class="line">    conv_filter_size = <span class="number">3</span></span><br><span class="line">    conv_depth_start = <span class="number">32</span></span><br><span class="line">    conv_layers_count = <span class="number">3</span></span><br><span class="line">    fc_output_dims = [<span class="number">120</span>,<span class="number">84</span>]</span><br><span class="line">    output_classes = n_classes</span><br><span class="line">    conv_input_depth = input_img_dimensions[<span class="number">-1</span>]</span><br><span class="line">   </span><br><span class="line">    <span class="comment">#3层卷积层、过滤器尺寸是3x3，过滤器深度是32，3层全连接层</span></span><br><span class="line">    print(<span class="string">"[mymodel] Building neural network [conv layers=&#123;0&#125;, conv filter size=&#123;1&#125;, conv start depth=&#123;2&#125;, fc layers=&#123;3&#125;]"</span>.format(</span><br><span class="line">        conv_layers_count, conv_filter_size, conv_depth_start, len(fc_output_dims)+<span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#用for循环实现3层卷积层</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,conv_layers_count):</span><br><span class="line">        conv_output_depth = conv_depth_start * (<span class="number">2</span> ** (i))</span><br><span class="line">        <span class="comment">#3X3卷积层</span></span><br><span class="line">        conv_W = tf.Variable(tf.truncated_normal(shape=(conv_filter_size, conv_filter_size, conv_input_depth, conv_output_depth), </span><br><span class="line">                                              mean = mu, stddev = sigma)) </span><br><span class="line">        conv_b = tf.Variable(tf.zeros(conv_output_depth))</span><br><span class="line">        </span><br><span class="line">        conv_output = tf.nn.conv2d(prev_conv_layer, conv_W, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'VALID'</span>, name=<span class="string">"conv_&#123;0&#125;"</span>.format(i)) + conv_b</span><br><span class="line">        conv_output = tf.nn.relu(conv_output, name=<span class="string">"conv_&#123;0&#125;_relu"</span>.format(i)) <span class="comment">#通过relu激活函数完成去线性化</span></span><br><span class="line">        <span class="comment"># 2x2池化层 </span></span><br><span class="line">        conv_output = tf.nn.max_pool(conv_output, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'VALID'</span>)</span><br><span class="line">        <span class="comment"># 应用dropout 防止过拟合，随机将部分节点的输出改为0</span></span><br><span class="line">        conv_output = tf.nn.dropout(conv_output, dropout_conv_pct) </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 相应地设置循环变量</span></span><br><span class="line">        prev_conv_layer = conv_output</span><br><span class="line">        conv_input_depth = conv_output_depth</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#扁平化(在保留第0轴的情况下对输入的张量进行Flatten) </span></span><br><span class="line">    fc0   = flatten(prev_conv_layer) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 全连接层1,2</span></span><br><span class="line">    prev_layer = fc0</span><br><span class="line">    <span class="keyword">for</span> output_dim <span class="keyword">in</span> fc_output_dims:</span><br><span class="line">        fcn_W  = tf.Variable(tf.truncated_normal(shape=(prev_layer.get_shape().as_list()[<span class="number">-1</span>], output_dim), </span><br><span class="line">                                                 mean = mu, stddev = sigma))</span><br><span class="line">        fcn_b  = tf.Variable(tf.zeros(output_dim))</span><br><span class="line">        </span><br><span class="line">        prev_layer   = tf.nn.dropout(tf.nn.relu(tf.matmul(prev_layer, fcn_W) + fcn_b), dropout_fc_pct)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#全连接层3</span></span><br><span class="line">    fc_final_W  = tf.Variable(tf.truncated_normal(shape=(prev_layer.get_shape().as_list()[<span class="number">-1</span>], output_classes), </span><br><span class="line">                                                  mean = mu, stddev = sigma))</span><br><span class="line">    fc_final_b  = tf.Variable(tf.zeros(output_classes))</span><br><span class="line">    logits = tf.matmul(prev_layer, fc_final_W) + fc_final_b</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> logits</span><br></pre></td></tr></table></figure>
+
+<p><strong>过程：</strong></p>
+<p>​    这里我们的输入是32x32x3,第一层是3x3x32的卷积层，输出是30x30x32，然后跟着一个池化层，变成15X15X32；</p>
+<p>​    第二层是3x3x64的卷积层，输出是13x13x64，后面也是跟着一个池化层，变成6x6x64。</p>
+<p>​    第三层是3x3x128的卷积层，输出是4x4x128，后面也是跟着一个池化层，变成2x2x64。</p>
+<p>​    扁平化后2x2x64 = 512，所以全连接层设置为（512,120）、（120,84）、（84,43）。</p>
+<p><strong>打印：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/33e57e2e86401d97cb5e31057adab160.jpg" alt="45.jpg"></p>
+<p>（可视化前向传播）</p>
+<p><strong>卷积层、池化层过程（数学角度）</strong></p>
+<blockquote>
+<p>conv_output = tf.nn.conv2d(prev_conv_layer, conv_W, strides=[1, 1, 1, 1], padding=’VALID’, name=”conv_{0}”.format(i)) + conv_b</p>
+</blockquote>
+<p>​    其中有个参数 padding，在进行卷积运算，tensorflow提供两种SAME和VALID两种选择。其中”SAME“表示添加全0填充，“VALID“表示不添加。卷积层输出深度与卷积层过滤器深度一致。</p>
+<p><img src="http://yanxuan.nosdn.127.net/097ac53e4d63d0f67832194acff1eeb8.jpg" alt="46.jpg"></p>
+<p>（全零填充）</p>
+<p><img src="http://yanxuan.nosdn.127.net/37b34bb6ba7dc31430d303326fb767cc.JPG" alt="47.JPG"></p>
+<p>（不全零填充，向上取整）</p>
+<h5 id="5-3-评估模型"><a href="#5-3-评估模型" class="headerlink" title="5.3 评估模型"></a>5.3 评估模型</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##评估模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate_model</span><span class="params">(X_data, Y_data, batch_size)</span>:</span></span><br><span class="line">    num_examples = len(X_data)</span><br><span class="line">    total_accuracy = <span class="number">0.0</span></span><br><span class="line">    total_loss = <span class="number">0.0</span></span><br><span class="line">    sess = tf.get_default_session()</span><br><span class="line">    <span class="keyword">for</span> offset <span class="keyword">in</span> range(<span class="number">0</span>, num_examples, batch_size):</span><br><span class="line">        batch_x, batch_y = X_data[offset:offset+batch_size], Y_data[offset:offset+batch_size]</span><br><span class="line">        <span class="comment"># 计算该512个数据样本的准确度和损失</span></span><br><span class="line">        accuracy = sess.run(accuracy_operation, </span><br><span class="line">                            feed_dict=&#123;</span><br><span class="line">                                dropout_placeholder_conv: <span class="number">1.0</span>,</span><br><span class="line">                                dropout_placeholder_fc: <span class="number">1.0</span>,</span><br><span class="line">                                inputs: batch_x, </span><br><span class="line">                                labels: batch_y</span><br><span class="line">                                      &#125;)</span><br><span class="line">        loss = sess.run(loss_operation, feed_dict=&#123;</span><br><span class="line">                                dropout_placeholder_conv: <span class="number">1.0</span>,</span><br><span class="line">                                dropout_placeholder_fc: <span class="number">1.0</span>,</span><br><span class="line">                                inputs: batch_x, </span><br><span class="line">                                labels: batch_y</span><br><span class="line">                                       &#125;)</span><br><span class="line"></span><br><span class="line">     <span class="comment"># 整个数据集的期望</span></span><br><span class="line">        total_accuracy += (accuracy * len(batch_x))        </span><br><span class="line">        total_loss += (loss * len(batch_x))            </span><br><span class="line"></span><br><span class="line">     <span class="comment"># 整个数据集的准确率和损失率</span></span><br><span class="line">    <span class="keyword">return</span> (total_accuracy / num_examples, total_loss / num_examples)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-训练神经网络"><a href="#6-训练神经网络" class="headerlink" title="6.训练神经网络"></a>6.训练神经网络</h4><p><strong>功能：</strong></p>
+<p>​    通过训练集和验证集训练神经网络，用来测试。因为训练的过程花费时间较长，为了让训练结果可以复用，需要将训练得到的神经网络模型持久化。这样在测试新的数据集，只需要先从持久化后模型文件中还原被保存的模型就可以了。</p>
+<h5 id="6-1定义全局变量"><a href="#6-1定义全局变量" class="headerlink" title="6.1定义全局变量"></a>6.1定义全局变量</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义一些全局变量</span></span><br><span class="line">epochs = <span class="number">40</span></span><br><span class="line">learning_rate = <span class="number">0.001</span></span><br><span class="line">batch_size = <span class="number">512</span></span><br><span class="line">save_model_path = <span class="string">"datas/Traffice_sign_classifier"</span></span><br><span class="line">dropout_conv_keep_pct = <span class="number">0.75</span></span><br><span class="line">dropout_fc_keep_pct = <span class="number">0.5</span></span><br><span class="line">max_accuracy = <span class="number">0</span></span><br><span class="line">PRINT_FREQ = <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="6-2反向传播"><a href="#6-2反向传播" class="headerlink" title="6.2反向传播"></a>6.2反向传播</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#前向传播</span></span><br><span class="line">logits = mymodel(inputs,dropout_placeholder_conv,dropout_placeholder_fc)</span><br><span class="line"><span class="comment">#交叉熵来刻画损失函数（预测值和真实值） </span></span><br><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=one_hot_y, logits=logits)</span><br><span class="line"><span class="comment">#交叉熵平均值</span></span><br><span class="line">loss_operation = tf.reduce_mean(cross_entropy)</span><br><span class="line"><span class="comment">#优化器</span></span><br><span class="line">optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)</span><br><span class="line"><span class="comment">#通过传入loss_operation参数，使其得以更新并最小化</span></span><br><span class="line">training_operation =optimizer.minimize(loss_operation)</span><br><span class="line"><span class="comment">#tf.equal函数判断两个张量的每一维是否相等，如果想等返回TRUE</span></span><br><span class="line"><span class="comment">#tf.argmax函数来得到预测值和真实值对应的类别编号</span></span><br><span class="line">correct_prediction = tf.equal(tf.argmax(logits, <span class="number">1</span>), tf.argmax(one_hot_y,<span class="number">1</span>))</span><br><span class="line"><span class="comment">#首先将布尔型数据转换成实数型数据，然后计算平均值。这个平均值就是这个模型在这一组数据上的准确性。</span></span><br><span class="line">accuracy_operation = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>​    神经网络模型的效果以及优化的目标是通过损失函数来定义的。</p>
+<p>​    经典损失函数有处理分类问题的Softmax回归之后的交叉熵损失函数（cross_entropy = tf.nn.softmax_cross_entropy_with_logits(y,y_ )）（y为预测值，y_为真实值），还有处理回归问题的均方误差损失函数（mse = tf.resuce_mean（tf.square(y_) - y ））。</p>
+<p>​    目前Tensorflow支持7种不同的优化器，比较常用的优化方法有三种：tf.train.GradientDescentOptimizer、tf.train.AdamOptimizer和tf.train.MomentumOptimizer。</p>
+<h5 id="6-3训练"><a href="#6-3训练" class="headerlink" title="6.3训练"></a>6.3训练</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#初始化会话并开始训练过程</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:            </span><br><span class="line">    sess.run(tf.global_variables_initializer()) <span class="comment">#初始化所有变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#40轮，每次选取512个样本进行训练。也就是训练结束一共进行了（num_examples/batch_size)*epochs次。</span></span><br><span class="line">    num_examples = len(X_train_normalised) </span><br><span class="line">    print(<span class="string">"Training mymodel [epochs=&#123;0&#125;, batch_size=&#123;1&#125;]...\n"</span>.format(epochs, batch_size))</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#40轮训练</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(epochs):</span><br><span class="line">        X_train, Y_train = shuffle(X_train_normalised, y_train) <span class="comment">#将序列的所有元素随机排序</span></span><br><span class="line">        <span class="comment">#每一轮训练</span></span><br><span class="line">        <span class="keyword">for</span> offset <span class="keyword">in</span> range(<span class="number">0</span>, num_examples, batch_size):</span><br><span class="line">            end = offset + batch_size</span><br><span class="line">            batch_x, batch_y = X_train[offset:end], Y_train[offset:end]</span><br><span class="line">            sess.run(training_operation, feed_dict=&#123;</span><br><span class="line">                inputs: batch_x, </span><br><span class="line">                labels: batch_y, </span><br><span class="line">                dropout_placeholder_conv:<span class="number">0.75</span>,</span><br><span class="line">                dropout_placeholder_fc:<span class="number">0.5</span>,</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">        training_accuracy, training_loss = evaluate_model(X_train_normalised, y_train, batch_size)            </span><br><span class="line">        validation_accuracy, validation_loss = evaluate_model(X_valid_normalised, y_valid, batch_size)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#if i == 0 or (i+1) % PRINT_FREQ == 0:</span></span><br><span class="line">        print(<span class="string">"[&#123;0&#125;]\ttrain:loss=&#123;1:.4f&#125;, acc=&#123;2:.4f&#125; | val:loss=&#123;3:.4f&#125;, acc=&#123;4:.4f&#125;"</span>.format(</span><br><span class="line">                    i+<span class="number">1</span>,training_loss, training_accuracy, </span><br><span class="line">                   validation_loss, validation_accuracy))</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-4持久化"><a href="#6-4持久化" class="headerlink" title="6.4持久化"></a>6.4持久化</h5><p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#tensorflow持久化</span></span><br><span class="line">      <span class="keyword">if</span> validation_accuracy &gt; max_accuracy:</span><br><span class="line">          max_acc = validation_accuracy</span><br><span class="line">          <span class="comment">#模型保存，先要创建一个Saver对象：如 saver=tf.train.Saver()</span></span><br><span class="line">          <span class="comment">#当然，如果你只想保存最后一代的模型，则只需要将max_to_keep设置为1即可</span></span><br><span class="line">          saver = tf.train.Saver(max_to_keep=<span class="number">1</span>)</span><br><span class="line">          save_path = saver.save(sess,save_model_path) <span class="comment">#保存路径</span></span><br><span class="line">          model_file_name = <span class="string">"&#123;0&#125;.chkpt"</span>.format(save_model_path)</span><br><span class="line">      print(<span class="string">"Model &#123;0&#125; saved"</span>.format(model_file_name))</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/28f95b4c283234da42897693e14025dd.jpg" alt="48.jpg"></p>
+<h4 id="7-测试神经网络"><a href="#7-测试神经网络" class="headerlink" title="7.测试神经网络"></a>7.测试神经网络</h4><p><strong>功能：</strong>测试新的数据集，只需要先从持久化后模型文件中还原被保存的模型就可以了。可以省去训练模型耗费的大量时间。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###1.读取数据</span></span><br><span class="line">training_file = <span class="string">'datas/train.p'</span></span><br><span class="line">testing_file = <span class="string">'datas/test.p'</span> </span><br><span class="line"><span class="keyword">with</span> open(testing_file, mode=<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    test = pickle.load(f)</span><br><span class="line"><span class="keyword">with</span> open(training_file, mode=<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    train = pickle.load(f)</span><br><span class="line">X_train, y_train = train[<span class="string">'features'</span>], train[<span class="string">'labels'</span>]</span><br><span class="line">X_test, y_test = test[<span class="string">'features'</span>], test[<span class="string">'labels'</span>]</span><br><span class="line">n_classes = len(set(y_test))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">######2：数据预处理</span></span><br><span class="line">X_test_normalised = util.normalise_images(X_test, X_train)</span><br><span class="line">print(X_test_normalised.shape,y_test.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###3:设计神经网络层</span></span><br><span class="line">inputs = tf.placeholder(tf.float32,shape = [<span class="literal">None</span>,<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>], name = <span class="string">'inputs'</span>)</span><br><span class="line">labels = tf.placeholder(tf.int32, shape = [<span class="literal">None</span>], name = <span class="string">'labels'</span>)</span><br><span class="line">one_hot_y = tf.one_hot(labels,n_classes)</span><br><span class="line">dropout_placeholder_conv = tf.placeholder(tf.float32)</span><br><span class="line">dropout_placeholder_fc = tf.placeholder(tf.float32)</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mymodel</span><span class="params">(images,dropout_conv_pct, dropout_fc_pct)</span>:</span></span><br><span class="line">    mu = <span class="number">0</span></span><br><span class="line">    sigma = <span class="number">0.1</span></span><br><span class="line">    </span><br><span class="line">    prev_conv_layer = inputs</span><br><span class="line">    input_img_dimensions = [<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>]</span><br><span class="line">    conv_filter_size = <span class="number">3</span></span><br><span class="line">    conv_depth_start = <span class="number">32</span></span><br><span class="line">    conv_layers_count = <span class="number">3</span></span><br><span class="line">    fc_output_dims = [<span class="number">120</span>,<span class="number">84</span>]</span><br><span class="line">    output_classes = n_classes</span><br><span class="line">    conv_input_depth = input_img_dimensions[<span class="number">-1</span>]</span><br><span class="line">   </span><br><span class="line">    print(<span class="string">"[mymodel] Building neural network [conv layers=&#123;0&#125;, conv filter size=&#123;1&#125;, conv start depth=&#123;2&#125;, fc layers=&#123;3&#125;]"</span>.format(</span><br><span class="line">        conv_layers_count, conv_filter_size, conv_depth_start, len(fc_output_dims)))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,conv_layers_count):</span><br><span class="line">        <span class="comment"># 层深度呈指数增长</span></span><br><span class="line">        conv_output_depth = conv_depth_start * (<span class="number">2</span> ** (i))</span><br><span class="line">        conv_W = tf.Variable(tf.truncated_normal(shape=(conv_filter_size, conv_filter_size, conv_input_depth, conv_output_depth), </span><br><span class="line">                                              mean = mu, stddev = sigma))</span><br><span class="line">        conv_b = tf.Variable(tf.zeros(conv_output_depth))</span><br><span class="line">        </span><br><span class="line">        conv_output = tf.nn.conv2d(prev_conv_layer, conv_W, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'VALID'</span>, name=<span class="string">"conv_&#123;0&#125;"</span>.format(i)) + conv_b</span><br><span class="line">        conv_output = tf.nn.relu(conv_output, name=<span class="string">"conv_&#123;0&#125;_relu"</span>.format(i))</span><br><span class="line">        print(conv_output)</span><br><span class="line">        <span class="comment"># 2x2池化层 </span></span><br><span class="line">        conv_output = tf.nn.max_pool(conv_output, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'VALID'</span>)</span><br><span class="line">        print(conv_output)</span><br><span class="line">        <span class="comment"># 应用dropout 防止过拟合</span></span><br><span class="line">        conv_output = tf.nn.dropout(conv_output, dropout_conv_pct) </span><br><span class="line">        print(conv_output)</span><br><span class="line">        <span class="comment"># 相应地设置循环变量</span></span><br><span class="line">        prev_conv_layer = conv_output</span><br><span class="line">        conv_input_depth = conv_output_depth</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 在保留第0轴的情况下对输入的张量进行Flatten(扁平化)</span></span><br><span class="line">    fc0   = flatten(prev_conv_layer)</span><br><span class="line">    print(fc0)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 全连接层1，2</span></span><br><span class="line">    prev_layer = fc0</span><br><span class="line">    <span class="keyword">for</span> output_dim <span class="keyword">in</span> fc_output_dims:</span><br><span class="line">        fcn_W  = tf.Variable(tf.truncated_normal(shape=(prev_layer.get_shape().as_list()[<span class="number">-1</span>], output_dim), </span><br><span class="line">                                                 mean = mu, stddev = sigma))</span><br><span class="line">        fcn_b  = tf.Variable(tf.zeros(output_dim))</span><br><span class="line">        </span><br><span class="line">        prev_layer   = tf.nn.dropout(tf.nn.relu(tf.matmul(prev_layer, fcn_W) + fcn_b), dropout_fc_pct)</span><br><span class="line"></span><br><span class="line">        print(prev_layer)</span><br><span class="line">    <span class="comment"># 全连接层3</span></span><br><span class="line">    fc_final_W  = tf.Variable(tf.truncated_normal(shape=(prev_layer.get_shape().as_list()[<span class="number">-1</span>], output_classes), </span><br><span class="line">                                                  mean = mu, stddev = sigma))</span><br><span class="line">    fc_final_b  = tf.Variable(tf.zeros(output_classes))</span><br><span class="line">    logits = tf.matmul(prev_layer, fc_final_W) + fc_final_b</span><br><span class="line">    print(logits)</span><br><span class="line">    <span class="keyword">return</span> logits </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate_model</span><span class="params">(X_data, Y_data, batch_size)</span>:</span></span><br><span class="line">    num_examples = len(X_data)</span><br><span class="line">    total_accuracy = <span class="number">0.0</span></span><br><span class="line">    sess = tf.get_default_session()</span><br><span class="line">    <span class="keyword">for</span> offset <span class="keyword">in</span> range(<span class="number">0</span>, num_examples, batch_size):</span><br><span class="line">        batch_x, batch_y = X_data[offset:offset+batch_size], Y_data[offset:offset+batch_size]</span><br><span class="line">        <span class="comment"># 计算该批次的准确度和损失</span></span><br><span class="line">        accuracy = sess.run(accuracy_operation, </span><br><span class="line">                            feed_dict=&#123;</span><br><span class="line">                                dropout_placeholder_conv: <span class="number">1.0</span>,</span><br><span class="line">                                dropout_placeholder_fc: <span class="number">1.0</span>,</span><br><span class="line">                                inputs: batch_x, </span><br><span class="line">                                labels: batch_y</span><br><span class="line">                                      &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 批量元素总数加权精度</span></span><br><span class="line">        total_accuracy += (accuracy * len(batch_x))        </span><br><span class="line"></span><br><span class="line">     <span class="comment"># 在整个数据集上生成真正的平均精度</span></span><br><span class="line">    <span class="keyword">return</span> (total_accuracy / num_examples) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">0.001</span></span><br><span class="line">batch_size = <span class="number">512</span></span><br><span class="line"></span><br><span class="line">logits = mymodel(inputs,dropout_placeholder_conv,dropout_placeholder_fc)</span><br><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(labels=one_hot_y, logits=logits)</span><br><span class="line">loss_operation = tf.reduce_mean(cross_entropy)</span><br><span class="line">optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)</span><br><span class="line">training_operation =optimizer.minimize(loss_operation)</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(logits, <span class="number">1</span>), tf.argmax(one_hot_y, <span class="number">1</span>))</span><br><span class="line">accuracy_operation = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</span><br><span class="line"></span><br><span class="line"><span class="comment">###4.测试神经网络</span></span><br><span class="line">loaded_graph = tf.Graph()        </span><br><span class="line">save_model_path = <span class="string">"datas/Traffice_sign_classifier"</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer()) </span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    saver.restore(sess,save_model_path) <span class="comment">#加载模型</span></span><br><span class="line">    test_accuracy = evaluate_model(X_test_normalised,y_test,batch_size)</span><br><span class="line">    print(<span class="string">"[mymodel - Test Set]\tacc=&#123;0:.4f&#125;"</span>.format(test_accuracy))            </span><br><span class="line"></span><br><span class="line">tf.reset_default_graph() <span class="comment">#清除当前默认图中堆栈，重置默认图，实现模型参数的多次读取</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>​    和训练.py文件基本一样，只是需要额外加一个加载模型的步骤。</p>
+<p><strong>打印：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/f3b93381fd3c5563f4df8b00020db4d7.jpg" alt="49.jpg"></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><hr>
+<p>​    后续可以将训练好的模型应用于图像和视频流。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+            <a href="/tags/交通标志/" rel="tag"># 交通标志</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/01/16/职工管理系统/" rel="next" title="基于多态的职工管理系统">
+                <i class="fa fa-chevron-left"></i> 基于多态的职工管理系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/year/02/20/无人驾驶感知--基于霍夫变换的车道线检测/" rel="prev" title="无人驾驶环境感知--基于霍夫变换的车道线检测">
+                无人驾驶环境感知--基于霍夫变换的车道线检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mr.Chen">
+            
+              <p class="site-author-name" itemprop="name">Mr.Chen</p>
+              <p class="site-description motion-element" itemprop="description">立志做一个会写作的程序员。这辈子最大的野心是成为一个快乐而有趣的人，愿一世无悔追逐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=332653562" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_42146017" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/chen-kai-xiang-37/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-导入库"><span class="nav-text">1.导入库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-载入数据"><span class="nav-text">2.载入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-探索数据"><span class="nav-text">3.探索数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-数据预处理"><span class="nav-text">4.数据预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-设计神经网络层"><span class="nav-text">5.设计神经网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1张量"><span class="nav-text">5.1张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-前向传播"><span class="nav-text">5.2 前向传播</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-评估模型"><span class="nav-text">5.3 评估模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-训练神经网络"><span class="nav-text">6.训练神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1定义全局变量"><span class="nav-text">6.1定义全局变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2反向传播"><span class="nav-text">6.2反向传播</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3训练"><span class="nav-text">6.3训练</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4持久化"><span class="nav-text">6.4持久化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-测试神经网络"><span class="nav-text">7.测试神经网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

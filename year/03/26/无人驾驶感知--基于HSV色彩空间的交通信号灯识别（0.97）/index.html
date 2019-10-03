@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,交通信号灯,特征检测,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 交通信号灯是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文是基于特征检测完成数据集的训练与测试，达到识别交通信号灯的目的。目前准确率为0.975。">
+<meta name="keywords" content="Python,交通信号灯,特征检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无人驾驶环境感知--基于HSV色彩空间的交通信号灯识别（0.97）">
+<meta property="og:url" content="https://remarkable-chen.github.io/year/03/26/无人驾驶感知--基于HSV色彩空间的交通信号灯识别（0.97）/index.html">
+<meta property="og:site_name" content="July">
+<meta property="og:description" content="前言 交通信号灯是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文是基于特征检测完成数据集的训练与测试，达到识别交通信号灯的目的。目前准确率为0.975。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8af8fd6257e6f750ba48d2635666d5b9.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/88e32f153e77bb25b29de6ecfd355b3a.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/4df62da6ff7866258cfca653101f1973.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/f43122f9e670be8c5abf791ccf6fe9cc.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2b0e2ede62a6dcea96d0dfccb24a20b6.png">
+<meta property="og:updated_time" content="2019-05-13T02:48:02.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无人驾驶环境感知--基于HSV色彩空间的交通信号灯识别（0.97）">
+<meta name="twitter:description" content="前言 交通信号灯是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文是基于特征检测完成数据集的训练与测试，达到识别交通信号灯的目的。目前准确率为0.975。">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/8af8fd6257e6f750ba48d2635666d5b9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://remarkable-chen.github.io/year/03/26/无人驾驶感知--基于HSV色彩空间的交通信号灯识别（0.97）/">
+
+
+
+
+
+  <title>无人驾驶环境感知--基于HSV色彩空间的交通信号灯识别（0.97） | July</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">July</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just u like yourself。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/year/03/26/无人驾驶感知--基于HSV色彩空间的交通信号灯识别（0.97）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">无人驾驶环境感知--基于HSV色彩空间的交通信号灯识别（0.97）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T16:35:16+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/无人驾驶环境感知/" itemprop="url" rel="index">
+                    <span itemprop="name">无人驾驶环境感知</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><hr>
+<p>交通信号灯是行驶环境中的目标检测之一，其他的还有车道线检测、车辆检测、交通标志检测。它是无人驾驶感知的重要一环。本文是基于特征检测完成数据集的训练与测试，达到识别交通信号灯的目的。目前准确率为0.975。</p>
+<a id="more"></a>
+
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><hr>
+<h4 id="0-导入库"><a href="#0-导入库" class="headerlink" title="0.导入库"></a>0.导入库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="keyword">import</span> helpers </span><br><span class="line"><span class="keyword">import</span> test_functions</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-加载交通信号灯数据集"><a href="#1-加载交通信号灯数据集" class="headerlink" title="1.加载交通信号灯数据集"></a>1.加载交通信号灯数据集</h4><p><strong>代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1.加载交通信号灯数据集</span></span><br><span class="line"><span class="comment"># 图像集目录</span></span><br><span class="line">IMAGE_DIR_TRAINING = <span class="string">"traffic_light_images/train"</span></span><br><span class="line">IMAGE_DIR_TEST = <span class="string">"traffic_light_images/test"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用helpers.py文件中的load_dataset函数加载图像</span></span><br><span class="line">IMAGE_LIST = helpers.load_dataset(IMAGE_DIR_TRAINING)</span><br><span class="line">print(<span class="string">"训练集照片总数："</span> + str(len(IMAGE_LIST)))</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>load_dataset（）函数代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_dataset</span><span class="params">(image_dir)</span>:</span></span><br><span class="line">    </span><br><span class="line">    im_list = []</span><br><span class="line">    image_types = [ <span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"green"</span>]</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">"红、黄、绿照片的数量分别为："</span>)</span><br><span class="line">    <span class="comment"># 遍历每个颜色类型文件夹</span></span><br><span class="line">    <span class="keyword">for</span> im_type <span class="keyword">in</span> image_types:</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 遍历每个image_type文件夹中的每个图像文件</span></span><br><span class="line">        <span class="comment">#获取指定目录下（traffic_light_images/train/red(yellow)(green)）的所有图片</span></span><br><span class="line">        file_lists = glob.glob(os.path.join(image_dir, im_type, <span class="string">"*"</span>))</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#分别打印红、黄、绿照片的数量</span></span><br><span class="line">        print(len(file_lists))    </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> file_lists:    </span><br><span class="line">            </span><br><span class="line">            im = mpimg.imread(file)<span class="comment"># 读取图片</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 检查图片是否存在以及是否被正确读取</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> im <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                </span><br><span class="line">                <span class="comment">#在列表中加入图片以及该图所属的类型</span></span><br><span class="line">                im_list.append((im, im_type))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> im_list</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">红、黄、绿照片的数量分别为：</span><br><span class="line">723</span><br><span class="line">35</span><br><span class="line">429</span><br><span class="line">训练集照片总数：1187</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">im_list[<span class="number">500</span>][<span class="number">0</span>]<span class="comment">#表示第500张图片</span></span><br><span class="line">im_list[<span class="number">500</span>][<span class="number">1</span>]<span class="comment">#表示第500张图片的标签</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-将数据集可视化"><a href="#2-将数据集可视化" class="headerlink" title="2.将数据集可视化"></a>2.将数据集可视化</h4><p><strong>功能：</strong>由上述可知，红色共有723张，黄色共有35张，绿色共有429张。所以可选择500,750,1000做可视化。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##2.将数据集可视化</span></span><br><span class="line"><span class="comment"># 红：723；黄：35 绿：429；</span></span><br><span class="line"><span class="comment">#显示图像</span></span><br><span class="line"><span class="comment">#打印图片的尺寸和标签</span></span><br><span class="line">_,ax = plt.subplots(<span class="number">1</span>,<span class="number">3</span>,figsize=(<span class="number">5</span>,<span class="number">2</span>)) <span class="comment">#新建</span></span><br><span class="line">red_image = IMAGE_LIST[<span class="number">500</span>][<span class="number">0</span>] <span class="comment">#红灯</span></span><br><span class="line">ax[<span class="number">0</span>].set_title(red_image.shape,fontsize=<span class="number">10</span>) <span class="comment">#标题--图片形状</span></span><br><span class="line">ax[<span class="number">0</span>].annotate(IMAGE_LIST[<span class="number">500</span>][<span class="number">1</span>],xy=(<span class="number">2</span>,<span class="number">5</span>),color=<span class="string">'blue'</span>,fontsize=<span class="string">'10'</span>) <span class="comment">#标记--蓝色标签</span></span><br><span class="line">ax[<span class="number">0</span>].axis(<span class="string">'off'</span>)<span class="comment">#省去坐标轴</span></span><br><span class="line">ax[<span class="number">0</span>].imshow(red_image)</span><br><span class="line"></span><br><span class="line">yellow_image = IMAGE_LIST[<span class="number">750</span>][<span class="number">0</span>]</span><br><span class="line">ax[<span class="number">1</span>].set_title(yellow_image.shape,fontsize=<span class="number">10</span>)</span><br><span class="line">ax[<span class="number">1</span>].annotate(IMAGE_LIST[<span class="number">750</span>][<span class="number">1</span>],xy=(<span class="number">2</span>,<span class="number">5</span>),color=<span class="string">'blue'</span>,fontsize=<span class="string">'10'</span>)</span><br><span class="line">ax[<span class="number">1</span>].axis(<span class="string">'off'</span>)</span><br><span class="line">ax[<span class="number">1</span>].imshow(yellow_image)</span><br><span class="line"></span><br><span class="line">green_image = IMAGE_LIST[<span class="number">1000</span>][<span class="number">0</span>]</span><br><span class="line">ax[<span class="number">2</span>].set_title(green_image.shape,fontsize=<span class="number">10</span>)</span><br><span class="line">ax[<span class="number">2</span>].annotate(IMAGE_LIST[<span class="number">1000</span>][<span class="number">1</span>],xy=(<span class="number">2</span>,<span class="number">5</span>),color=<span class="string">'blue'</span>,fontsize=<span class="string">'10'</span>)</span><br><span class="line">ax[<span class="number">2</span>].axis(<span class="string">'off'</span>)</span><br><span class="line">ax[<span class="number">2</span>].imshow(green_image)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/8af8fd6257e6f750ba48d2635666d5b9.png" alt="36.png"></p>
+<p><strong>注意：</strong>在matplotlib中，<code>整个图像</code>为一个<code>Figure</code>对象。在Figure对象中可以包含一个或者多个<code>Axes</code>对象。每个Axes(ax)对象都是一个拥有自己坐标系统的绘图区域。上面代码中创建了三个ax对象并有自己的坐标，最后这三个对象可以保存成一张图片。</p>
+<h4 id="3-预处理数据"><a href="#3-预处理数据" class="headerlink" title="3.预处理数据"></a>3.预处理数据</h4><p><strong>代码:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##3. 预处理数据</span></span><br><span class="line"><span class="comment">##标准化输入及输出</span></span><br><span class="line"><span class="comment">##输入</span></span><br><span class="line"><span class="comment">#将每张图图片的大小resize成相同的大小，因为对于分类任务来说，我们需要在每张图片上应用相同的算法，因此标准化图像尤其重要</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standardize_input</span><span class="params">(image)</span>:</span></span><br><span class="line">    </span><br><span class="line">    standard_im = cv2.resize(image,(<span class="number">32</span>,<span class="number">32</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> standard_im</span><br><span class="line"></span><br><span class="line"><span class="comment">##输出</span></span><br><span class="line"><span class="comment">#这里我们的标签数据是类别数据：’red’,’yellow’,’green’，因此我们可以利用one_hot方法将类别数据转换成数值数据</span></span><br><span class="line"><span class="comment">#红灯的数值数据应该是：[1,0,0]，黄灯应该是：[0，1，0]，绿灯应该是：[0，0，1]。这些标签被称为独热编码标签。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one_hot_encode</span><span class="params">(label)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> label == <span class="string">"red"</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span> label == <span class="string">"yellow"</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建一个输入RGB图像列表：图像加类型数据</span></span><br><span class="line"><span class="comment">#并输出标准化图像列表：图像和数值数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standardize</span><span class="params">(image_list)</span>:</span></span><br><span class="line"></span><br><span class="line">    standard_list = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">#遍历</span></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> image_list:</span><br><span class="line">        image = item[<span class="number">0</span>]</span><br><span class="line">        label = item[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 调用standardize_input函数</span></span><br><span class="line">        standardized_im = standardize_input(image)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 调用one_hot_encode函数</span></span><br><span class="line">        one_hot_label = one_hot_encode(label)    </span><br><span class="line"></span><br><span class="line">       <span class="comment">#加入到新的standard_list列表中</span></span><br><span class="line">        standard_list.append((standardized_im, one_hot_label))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> standard_list</span><br><span class="line"></span><br><span class="line"><span class="comment">#标准化所有的训练图片</span></span><br><span class="line">Standardized_Train_List = standardize(IMAGE_LIST)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-将标准化数据可视化"><a href="#4-将标准化数据可视化" class="headerlink" title="4.将标准化数据可视化"></a>4.将标准化数据可视化</h4><p><strong>功能：</strong>将第1100张图片经过标准化和独热编码预处理。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##4.将标准化数据可视化</span></span><br><span class="line"><span class="comment"># 红：723；黄：35 绿：429；</span></span><br><span class="line">num = <span class="number">1100</span></span><br><span class="line">standard_image = Standardized_Train_List[num][<span class="number">0</span>]</span><br><span class="line">plt.title(standard_image.shape)</span><br><span class="line">plt.annotate(<span class="string">'Label [red, yellow, green]:'</span>+ str(Standardized_Train_List[num][<span class="number">1</span>]),xy=(<span class="number">2</span>,<span class="number">5</span>),color=<span class="string">'blue'</span>,fontsize=<span class="string">'12'</span>)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.imshow(standard_image)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/88e32f153e77bb25b29de6ecfd355b3a.png" alt="37.png"></p>
+<h4 id="5-特征提取（全文重点）"><a href="#5-特征提取（全文重点）" class="headerlink" title="5.特征提取（全文重点）"></a>5.特征提取（全文重点）</h4><p><strong>功能：</strong>这里主要是先将图片从RGB域变换到HSV域，然后处理图片使图片分别变成只有红色、绿色、黄色。然后再统计图片像素点，最后根据具备某特征像素点数比较大小确定结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##5. 特征提取</span></span><br><span class="line"><span class="comment">#HSV即色相、饱和度、明度（英语：Hue, Saturation, Value），又称HSB，其中B即英语：Brightness。</span></span><br><span class="line"><span class="comment">#色相（H）是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。</span></span><br><span class="line"><span class="comment">#饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。</span></span><br><span class="line"><span class="comment">#明度（V），亮度（L），取0-100%。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在这里我们将使用色彩空间、形状分析及特征构造</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate_label</span><span class="params">(rgb_image,display)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    使用hsv和经验阈值来确定每个图像中的红色、绿色和黄色内容。</span></span><br><span class="line"><span class="string">    返回基于独热标签的的分类。</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    hsv = cv2.cvtColor(rgb_image,cv2.COLOR_RGB2HSV)<span class="comment">#REB域转HSV域</span></span><br><span class="line">    </span><br><span class="line">    sum_saturation = np.sum(hsv[:,:,<span class="number">1</span>])<span class="comment"># 将明度值相加</span></span><br><span class="line">    area = <span class="number">32</span>*<span class="number">32</span></span><br><span class="line">    avg_saturation = sum_saturation / area <span class="comment">#求平均的明度值</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#设定阈值</span></span><br><span class="line">    sat_low = int(avg_saturation*<span class="number">1.3</span>)<span class="comment">#均值的1.3倍，工程经验</span></span><br><span class="line">    val_low = <span class="number">140</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">##过滤图像使图像只有绿色或黄色或白色(正常红绿灯为白色或者黄色)</span></span><br><span class="line">    <span class="comment">#在车道线检测里面提过，类似于PhotoShop里面的蒙版</span></span><br><span class="line">    <span class="comment">#Green</span></span><br><span class="line">    lower_green = np.array([<span class="number">70</span>,sat_low,val_low])</span><br><span class="line">    upper_green = np.array([<span class="number">100</span>,<span class="number">255</span>,<span class="number">255</span>])</span><br><span class="line">    green_mask = cv2.inRange(hsv,lower_green,upper_green)</span><br><span class="line">    green_result = cv2.bitwise_and(rgb_image,rgb_image,mask = green_mask)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Yellow</span></span><br><span class="line">    lower_yellow = np.array([<span class="number">10</span>,sat_low,val_low])</span><br><span class="line">    upper_yellow = np.array([<span class="number">60</span>,<span class="number">255</span>,<span class="number">255</span>])</span><br><span class="line">    yellow_mask = cv2.inRange(hsv,lower_yellow,upper_yellow)</span><br><span class="line">    yellow_result = cv2.bitwise_and(rgb_image,rgb_image,mask=yellow_mask)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># Red </span></span><br><span class="line">    lower_red = np.array([<span class="number">150</span>,sat_low,val_low])</span><br><span class="line">    upper_red = np.array([<span class="number">180</span>,<span class="number">255</span>,<span class="number">255</span>])</span><br><span class="line">    red_mask = cv2.inRange(hsv,lower_red,upper_red)</span><br><span class="line">    red_result = cv2.bitwise_and(rgb_image,rgb_image,mask = red_mask)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#可视化图片于画布上</span></span><br><span class="line">    <span class="keyword">if</span> display==<span class="literal">True</span>:</span><br><span class="line">        _,ax = plt.subplots(<span class="number">1</span>,<span class="number">5</span>,figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">        ax[<span class="number">0</span>].set_title(<span class="string">'rgb image'</span>)</span><br><span class="line">        ax[<span class="number">0</span>].imshow(rgb_image)</span><br><span class="line">        ax[<span class="number">1</span>].set_title(<span class="string">'red result'</span>)</span><br><span class="line">        ax[<span class="number">1</span>].imshow(red_result)</span><br><span class="line">        ax[<span class="number">2</span>].set_title(<span class="string">'yellow result'</span>)</span><br><span class="line">        ax[<span class="number">2</span>].imshow(yellow_result)</span><br><span class="line">        ax[<span class="number">3</span>].set_title(<span class="string">'green result'</span>)</span><br><span class="line">        ax[<span class="number">3</span>].imshow(green_result)</span><br><span class="line">        ax[<span class="number">4</span>].set_title(<span class="string">'hsv image'</span>)</span><br><span class="line">        ax[<span class="number">4</span>].imshow(hsv)</span><br><span class="line">        plt.show()</span><br><span class="line">    </span><br><span class="line">    sum_green = findNoneZero(green_result)</span><br><span class="line">    sum_red = findNoneZero(red_result)</span><br><span class="line">    sum_yellow = findNoneZero(yellow_result)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#分析返回的像素点数</span></span><br><span class="line">    <span class="keyword">if</span> sum_red &gt;= sum_yellow <span class="keyword">and</span> sum_red&gt;=sum_green:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]<span class="comment">#Red</span></span><br><span class="line">    <span class="keyword">if</span> sum_yellow&gt;=sum_green:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]<span class="comment">#yellow</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]<span class="comment">#green</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#遍历一个一个像素点</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findNoneZero</span><span class="params">(rgb_image)</span>:</span></span><br><span class="line">    rows,cols,_= rgb_image.shape</span><br><span class="line">    counter = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">            pixels = rgb_image[row,col]</span><br><span class="line">            <span class="keyword">if</span> sum(pixels)!=<span class="number">0</span>:</span><br><span class="line">                counter = counter+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-用照片测试提取的特征"><a href="#6-用照片测试提取的特征" class="headerlink" title="6.用照片测试提取的特征"></a>6.用照片测试提取的特征</h4><p><strong>功能：</strong>这里用上文可视化过的三张图片来测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##6.用照片测试提取的特征</span></span><br><span class="line">img_test = [(red_image,<span class="string">'red'</span>),(yellow_image,<span class="string">'yellow'</span>),(green_image,<span class="string">'green'</span>)]</span><br><span class="line">standardtest = standardize(img_test)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> img <span class="keyword">in</span> standardtest:</span><br><span class="line">    predicted_label = estimate_label(img[<span class="number">0</span>],display = <span class="literal">True</span>)</span><br><span class="line">    print(<span class="string">'Predict label :'</span>,predicted_label) <span class="comment">#预测标签</span></span><br><span class="line">    print(<span class="string">'True label:'</span>,img[<span class="number">1</span>])<span class="comment">#真实标签</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>打印:</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/4df62da6ff7866258cfca653101f1973.png" alt="38.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict label : [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"><span class="literal">True</span> label: [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://yanxuan.nosdn.127.net/f43122f9e670be8c5abf791ccf6fe9cc.png" alt="39.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict label : [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="literal">True</span> label: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://yanxuan.nosdn.127.net/2b0e2ede62a6dcea96d0dfccb24a20b6.png" alt="40.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict label : [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="literal">True</span> label: [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-测试数据集"><a href="#7-测试数据集" class="headerlink" title="7.测试数据集"></a>7.测试数据集</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##7.测试数据集</span></span><br><span class="line"><span class="comment">#下载测试集</span></span><br><span class="line">TEST_IMAGE_LIST = helpers.load_dataset(IMAGE_DIR_TEST)</span><br><span class="line">print(<span class="string">"测试集照片总数："</span> + str(len(TEST_IMAGE_LIST)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#标准化测试集</span></span><br><span class="line">STANDARDIZED_TEST_LIST = standardize(TEST_IMAGE_LIST)</span><br><span class="line"></span><br><span class="line"><span class="comment"># shuffle() 方法将序列的所有元素随机排序。</span></span><br><span class="line">random.shuffle(STANDARDIZED_TEST_LIST)</span><br><span class="line">               </span><br><span class="line"><span class="comment">#调用get_misclassified_images()函数找出测试集中所有错误分类的图片</span></span><br><span class="line">MISCLASSIFIED = get_misclassified_images(STANDARDIZED_TEST_LIST,display=<span class="literal">False</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#计算准确率</span></span><br><span class="line">total = len(STANDARDIZED_TEST_LIST) <span class="comment">#总的测试集数目</span></span><br><span class="line">num_correct = total - len(MISCLASSIFIED)<span class="comment">#正确测试数目</span></span><br><span class="line">accuracy = num_correct/total <span class="comment">#准确率</span></span><br><span class="line"> </span><br><span class="line">print(<span class="string">'准确率: '</span> + str(accuracy))</span><br><span class="line">print(<span class="string">"未正确分类图片数 = "</span> + str(len(MISCLASSIFIED)) +<span class="string">' out of '</span>+ str(total))</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">181</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">107</span></span><br><span class="line">测试集照片总数：<span class="number">297</span></span><br><span class="line">准确率: <span class="number">0.9797979797979798</span></span><br><span class="line">未正确分类图片数 = <span class="number">6</span> out of <span class="number">297</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>调用的get_misclassified_images()函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#测试集准确率计算函数 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_misclassified_images</span><span class="params">(test_images,display=False)</span>:</span></span><br><span class="line">    </span><br><span class="line">    misclassified_images_labels = []</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> image <span class="keyword">in</span> test_images:</span><br><span class="line"> </span><br><span class="line">        im = image[<span class="number">0</span>] <span class="comment">#测试图片</span></span><br><span class="line">        true_label = image[<span class="number">1</span>] <span class="comment">#真实图片标签</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#预测图片标签</span></span><br><span class="line">        predicted_label = estimate_label(im,display=<span class="literal">False</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#比较真实和预测标签</span></span><br><span class="line">        <span class="keyword">if</span>(predicted_label != true_label):</span><br><span class="line">            <span class="comment">#把错误标签添加到列表中</span></span><br><span class="line">            misclassified_images_labels.append((im, predicted_label, true_label))</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> misclassified_images_labels</span><br></pre></td></tr></table></figure>
+
+<h3 id="后文"><a href="#后文" class="headerlink" title="后文"></a>后文</h3><hr>
+<p>在这个项目中，我们使用HSV色彩空间来识别交通灯，可以改善及提高的地方，以RCNN为代表的基于Region Proposal的深度学习目标检测算法以及以YOLO为代表的基于回归方法的深度学习目标检测算法。</p>
+<ul>
+<li>即采用Faster-RCNN或SSD来实现交通灯的识别</li>
+</ul>
+<p>然后将训练好的模型应用于图像和视频流。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/交通信号灯/" rel="tag"># 交通信号灯</a>
+          
+            <a href="/tags/特征检测/" rel="tag"># 特征检测</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/03/25/基于单目摄像头的人脸检测和移动物体检测/" rel="next" title="基于CMOS单目摄像头的人脸检测和移动物体检测">
+                <i class="fa fa-chevron-left"></i> 基于CMOS单目摄像头的人脸检测和移动物体检测
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/year/03/28/无人驾驶感知--基于Keras的车辆实时检测/" rel="prev" title="无人驾驶环境感知--基于Keras的车辆实时检测">
+                无人驾驶环境感知--基于Keras的车辆实时检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mr.Chen">
+            
+              <p class="site-author-name" itemprop="name">Mr.Chen</p>
+              <p class="site-description motion-element" itemprop="description">立志做一个会写作的程序员。这辈子最大的野心是成为一个快乐而有趣的人，愿一世无悔追逐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=332653562" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_42146017" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/chen-kai-xiang-37/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-导入库"><span class="nav-text">0.导入库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-加载交通信号灯数据集"><span class="nav-text">1.加载交通信号灯数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-将数据集可视化"><span class="nav-text">2.将数据集可视化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-预处理数据"><span class="nav-text">3.预处理数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-将标准化数据可视化"><span class="nav-text">4.将标准化数据可视化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-特征提取（全文重点）"><span class="nav-text">5.特征提取（全文重点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-用照片测试提取的特征"><span class="nav-text">6.用照片测试提取的特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-测试数据集"><span class="nav-text">7.测试数据集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后文"><span class="nav-text">后文</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

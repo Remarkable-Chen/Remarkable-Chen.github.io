@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.引言  树莓派是为学习计算机编程教育设计的一种只有信用卡大小的微型电脑，其系统基于Linux。随着Windows 10 IoT的发布，我们也将可以用上运行Windows的树莓派。  树莓派的系统是安装在SD卡里的，只需插上SD卡、接通显示器和键盘鼠标，就能执行如电子表格、文字处理、玩游戏、播放高清视频等PC的基本功能。 个人选择树莓派，主要想用来打通Linux的基本编程知识以及嵌入式硬件知识，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派入门之开机配置、远程操作">
+<meta property="og:url" content="https://remarkable-chen.github.io/year/05/11/树莓派使用之系统安装和基本设置/index.html">
+<meta property="og:site_name" content="July">
+<meta property="og:description" content="1.引言  树莓派是为学习计算机编程教育设计的一种只有信用卡大小的微型电脑，其系统基于Linux。随着Windows 10 IoT的发布，我们也将可以用上运行Windows的树莓派。  树莓派的系统是安装在SD卡里的，只需插上SD卡、接通显示器和键盘鼠标，就能执行如电子表格、文字处理、玩游戏、播放高清视频等PC的基本功能。 个人选择树莓派，主要想用来打通Linux的基本编程知识以及嵌入式硬件知识，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/395c268467b21e97ee485d296128a7af.png">
+<meta property="og:image" content="c:%5CUsers%5Cckx10%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567260220438.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce1477b0c98e57720.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce14cab32c0d74226.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce14ff1b923548670.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/bd36b9641c2104b88b38d73e68855f08.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/cce4600df3a6f5c9f778e93e2d2ad7fc.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/75ba41adfe971b580c1931f549401f77.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/e5200415af2dec2241da098da02e672a.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/74a234b82339e21a84742937b4f3300c.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8e4b2bffcd74626ea08f886283d8c5fd.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/b0be489cc742e2925a2a56089593d763.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/919fd8b26c555be800d85900e6de630d.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/dcb645d0548bdc07a3d7cfa95097be04.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2174cb828ed6689a0545f056fdf3cab6.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce15572514b050973.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce15774d3c1379511.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/05/19/5ce15894e40a822765.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2c019104cf178acda60cc756650fd65d.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/acd66f19434f4535174a351b5300273d.png">
+<meta property="og:updated_time" content="2019-09-10T16:03:42.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派入门之开机配置、远程操作">
+<meta name="twitter:description" content="1.引言  树莓派是为学习计算机编程教育设计的一种只有信用卡大小的微型电脑，其系统基于Linux。随着Windows 10 IoT的发布，我们也将可以用上运行Windows的树莓派。  树莓派的系统是安装在SD卡里的，只需插上SD卡、接通显示器和键盘鼠标，就能执行如电子表格、文字处理、玩游戏、播放高清视频等PC的基本功能。 个人选择树莓派，主要想用来打通Linux的基本编程知识以及嵌入式硬件知识，">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/395c268467b21e97ee485d296128a7af.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://remarkable-chen.github.io/year/05/11/树莓派使用之系统安装和基本设置/">
+
+
+
+
+
+  <title>树莓派入门之开机配置、远程操作 | July</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">July</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just u like yourself。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/year/05/11/树莓派使用之系统安装和基本设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派入门之开机配置、远程操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-11T16:22:16+08:00">
+                2019-05-11
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/树莓派/" itemprop="url" rel="index">
+                    <span itemprop="name">树莓派</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><hr>
+<blockquote>
+<p>树莓派是为学习计算机编程教育设计的一种只有信用卡大小的微型电脑，其系统基于Linux。随着Windows 10 IoT的发布，我们也将可以用上运行Windows的树莓派。</p>
+</blockquote>
+<p>树莓派的系统是安装在SD卡里的，只需插上SD卡、接通显示器和键盘鼠标，就能执行如电子表格、文字处理、玩游戏、播放高清视频等PC的基本功能。</p>
+<p>个人选择树莓派，主要想用来打通Linux的基本编程知识以及嵌入式硬件知识，另外相应的做一些简易创客项目。</p>
+<a id="more"></a>
+
+<h3 id="2-系统安装"><a href="#2-系统安装" class="headerlink" title="2.系统安装"></a>2.系统安装</h3><hr>
+<h4 id="2-1-安装包（百度云提供下载链接）"><a href="#2-1-安装包（百度云提供下载链接）" class="headerlink" title="2.1 安装包（百度云提供下载链接）"></a>2.1 安装包（百度云提供下载链接）</h4><p>首先是下载所需要的树莓派系统镜像和安装烧写镜像的工具，当然也可以从<a href="http://www.raspberrypi.org/downloads" target="_blank" rel="noopener">官网</a>下载最新的Raspbian树莓派系统。</p>
+<p><img src="http://yanxuan.nosdn.127.net/395c268467b21e97ee485d296128a7af.png" alt="Snipaste_2019-05-20_17-50-14.png"></p>
+<p>此外，还有本文树莓派登录控制提到的其他软件。</p>
+<h4 id="2-2-树莓派系统镜像烧写"><a href="#2-2-树莓派系统镜像烧写" class="headerlink" title="2.2 树莓派系统镜像烧写"></a>2.2 树莓派系统镜像烧写</h4><p>1）解压下载的树莓派系统文件，得到img镜像文件；</p>
+<p>2）将SD使用卡托或者读卡器后，连上电脑；</p>
+<p>3）直接点击安装Win32DiskImager-0.9.5-install.exe并运行；</p>
+<p>4）在软件中选择img文件，“Device”下选择SD的盘符，然后选择“Write”；</p>
+<p><img src="C:%5CUsers%5Cckx10%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567260220438.png" alt="1567260220438"></p>
+<p>5）然后就开始安装系统了，根据你的SD速度，安装过程有快有慢。</p>
+<p>6）安装结束后会弹出完成对话框，说明安装就完成了，如果不成功，请关闭防火墙一类的软件，重新插入SD进行安装。</p>
+<h4 id="2-3-Windows下备份（还原）树莓派"><a href="#2-3-Windows下备份（还原）树莓派" class="headerlink" title="2.3 Windows下备份（还原）树莓派"></a>2.3 Windows下备份（还原）树莓派</h4><p>树莓派支持许多操作系统，针对不同需求在不同系统上做相应的配置，我们可以通过购买若干张SD卡。当然我们也可以实现一张卡的重复使用，也就是说我们可以把原先系统的内容完整拷贝到Windows下，下次再用我们就再将原先系统内容烧录到SD卡即可。同样，还是上文提到的Win32DiskImager-0.9.5-install.exe可以实现该功能。</p>
+<p>先新建一个空白的.img后缀的文件，然后选择直接read就可以备份系统了，到时再重装就可以恢复了。</p>
+<p><img src="https://i.loli.net/2019/05/19/5ce1477b0c98e57720.png" alt="1508928256159647.png"></p>
+<h3 id="3-基本设置"><a href="#3-基本设置" class="headerlink" title="3.基本设置"></a>3.基本设置</h3><h4 id="3-1-换源"><a href="#3-1-换源" class="headerlink" title="3.1 换源"></a>3.1 换源</h4><p>树莓派默认的下载源是国外的源，每次下载时速度都比较慢，因此我们可以从国内已经下载了这些资源的人那里获取，比如说，清华大学开源软件镜像站。</p>
+<h5 id="1）给Raspbian的包管理器apt-get换源"><a href="#1）给Raspbian的包管理器apt-get换源" class="headerlink" title="1）给Raspbian的包管理器apt-get换源"></a>1）给<code>Raspbian</code>的包管理器<code>apt-get</code>换源</h5><p>在树莓派的命令行界面输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>在第一行开头加一个<code>#</code>注销其内容，然后把下面的内容拷贝到最后一行之后，如图中的效果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/05/19/5ce14cab32c0d74226.jpg" alt="Snipaste_2019-05-19_20-31-27.jpg"></p>
+<p>再输入以下命令更新到清华大学镜像源最新的软件列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上步骤实现了Respbian的包管理器<code>apt-get</code>换源到清华大学软件镜像站，并更新了软件列表，今后在树莓派命令行中执行<code>sudo apt-get install 软件名</code>时便会自动从清华大学开源软件镜像站高速下载。</p>
+</blockquote>
+<h5 id="2）给Python的第三方模块安装工具pip换源"><a href="#2）给Python的第三方模块安装工具pip换源" class="headerlink" title="2）给Python的第三方模块安装工具pip换源"></a>2）给<code>Python</code>的第三方模块安装工具<code>pip</code>换源</h5><p>在树莓派的命令行中依次输入运行以下三个命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir ~/.pip  #root目录下建立.pip文件夹</span><br><span class="line">cd .pip </span><br><span class="line">sudo nano pip.conf</span><br></pre></td></tr></table></figure>
+
+<p>在打开的文件中输入以下内容，如图中的效果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout = 10</span><br><span class="line">index-url =  http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">extra-index-url= http://pypi.douban.com/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">    mirrors.aliyun.com</span><br><span class="line">    pypi.douban.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/05/19/5ce14ff1b923548670.jpg" alt="Snipaste_2019-05-19_20-45-09.jpg"></p>
+<h4 id="3-2树莓派启动"><a href="#3-2树莓派启动" class="headerlink" title="3.2树莓派启动"></a>3.2树莓派启动</h4><p>烧写完后把SD卡直接插入树莓派接通电源即可运行，此时我们需要连接显示器。</p>
+<p>打开如图：</p>
+<p><img src="http://yanxuan.nosdn.127.net/bd36b9641c2104b88b38d73e68855f08.png" alt="62.png"></p>
+<h4 id="3-3-配置WIFI"><a href="#3-3-配置WIFI" class="headerlink" title="3.3 配置WIFI"></a>3.3 配置WIFI</h4><p><strong>基本操作：</strong>接上鼠标，选择左上角树莓派标志-&gt;首选项-&gt;Raspberry Pi Configuration-&gt;Localisation-&gt;WiFi Country设置Country为<strong>CN China</strong>。</p>
+<p><img src="http://yanxuan.nosdn.127.net/cce4600df3a6f5c9f778e93e2d2ad7fc.jpg" alt="63.jpg"></p>
+<p><img src="http://yanxuan.nosdn.127.net/75ba41adfe971b580c1931f549401f77.jpg" alt="64.jpg"></p>
+<p>重启后，在右上角选择WIFI，输入密码即可连接。</p>
+<p><strong>拓展：</strong>设置树莓派开机后自动连接无线网络（从第二次开始无需显示器）。</p>
+<p>1）在联网状态下（首次需要连接显示器），打开终端，安装vim编辑器。</p>
+<p><code>sudo apt-get install vim</code></p>
+<p>2）切换到root用户（部分文件我们是没有权限的，这时需要获取root用户的权限，可以通过sudo来临时获取最高权限，或者切换到root用户，）</p>
+<p><img src="http://yanxuan.nosdn.127.net/e5200415af2dec2241da098da02e672a.png" alt="65.png"></p>
+<p>3）然后进入目录/etc/wpa_supplicant/wpa_suppliacant.conf.进行编辑。下图是编辑完成后以界面文件形式打开。</p>
+<p><img src="http://yanxuan.nosdn.127.net/74a234b82339e21a84742937b4f3300c.png" alt="66.png"></p>
+<ul>
+<li>ssid是无线网络名称，psk是密码，key_mgmt是加密方式（可省略），priority是优先级。</li>
+<li>可以设多个WiFi，赋予不同的优先级，数字越大，优先级越高。</li>
+<li>我设两个，第一个是手机热点，第二个是路由器WiFi，一个断网会自动切换到另一个。</li>
+</ul>
+<h4 id="3-4-本地化设置"><a href="#3-4-本地化设置" class="headerlink" title="3.4 本地化设置"></a>3.4 本地化设置</h4><p>进入左上角树莓派标志-&gt;首选项-&gt;Raspberry Pi Configuration-&gt;Localisation进行相应的设置。</p>
+<h6 id="1）系统语言设置"><a href="#1）系统语言设置" class="headerlink" title="1）系统语言设置"></a>1）系统语言设置</h6><p><img src="http://yanxuan.nosdn.127.net/8e4b2bffcd74626ea08f886283d8c5fd.jpg" alt="67.jpg"></p>
+<h6 id="2）系统时区时间设置"><a href="#2）系统时区时间设置" class="headerlink" title="2）系统时区时间设置"></a>2）系统时区时间设置</h6><p><img src="http://yanxuan.nosdn.127.net/b0be489cc742e2925a2a56089593d763.jpg" alt="68.jpg"></p>
+<h6 id="3）系统键盘布局设置"><a href="#3）系统键盘布局设置" class="headerlink" title="3）系统键盘布局设置"></a>3）系统键盘布局设置</h6><p><img src="http://yanxuan.nosdn.127.net/919fd8b26c555be800d85900e6de630d.jpg" alt="69.jpg"></p>
+<p>当然，也可以在终端完成这一切设置，详细可见<a href="https://blog.csdn.net/qq813480700/article/details/71566552" target="_blank" rel="noopener">这篇博客</a>。</p>
+<h3 id="4-树莓派的登录控制"><a href="#4-树莓派的登录控制" class="headerlink" title="4.树莓派的登录控制"></a>4.树莓派的登录控制</h3><h4 id="4-1-SecureCRT"><a href="#4-1-SecureCRT" class="headerlink" title="4.1  SecureCRT"></a>4.1  SecureCRT</h4><p>1）官方的树莓派系统没有开启SSH服务，需要我们人为的开启SSH服务，我们需要在HDMI显示器上的命令行终端上输入sudo raspi-config进入到树莓派系统配置界面。</p>
+<p><img src="http://yanxuan.nosdn.127.net/dcb645d0548bdc07a3d7cfa95097be04.png" alt="70.png"></p>
+<p>2）打开命令行终端，输入ifconfig查看我们的ip地址。</p>
+<p>3）在电脑端打开软件SecureCRT和SecureFX并连接ip地址。这样就可以实现远程控制树莓派了。</p>
+<p><img src="http://yanxuan.nosdn.127.net/2174cb828ed6689a0545f056fdf3cab6.png" alt="71.png"></p>
+<h4 id="4-2-VNC-Viewer"><a href="#4-2-VNC-Viewer" class="headerlink" title="4.2 VNC Viewer"></a>4.2 VNC Viewer</h4><p>1）首先确认树莓派打开VNC，打开树莓派命令行界面输入命令，进入树莓派配置界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+
+<p>第五行：<code>Interfacing Options</code>开启功能</p>
+<p><img src="https://i.loli.net/2019/05/19/5ce15572514b050973.jpg" alt="Snipaste_2019-05-19_21-08-43.jpg"></p>
+<p>第三行<code>VNC</code>：VNC远程桌面登陆。</p>
+<p>2）安装好VNC Viewer，确保树莓派和主机连在同一个网络下。</p>
+<p>3）打开VNC Viewer，输入<strong>IP地址</strong>，回车即可。</p>
+<p><img src="https://i.loli.net/2019/05/19/5ce15774d3c1379511.jpg" alt="Snipaste_2019-05-19_21-17-17.jpg"></p>
+<p>4）跳出授权界面，正常填写树莓派用户名和密码即可。</p>
+<p><img src="https://i.loli.net/2019/05/19/5ce15894e40a822765.jpg" alt="Snipaste_2019-05-19_21-22-13.jpg"></p>
+<p>5）点击ok即可进入界面。</p>
+<p>6）另外还需设置一下分辨率，输入命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
+
+<p>找到如下两行，将其设置为自己电脑的分辨率即可。比如我的电脑是1920x1080。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">framebuffer_width=1920</span><br><span class="line">framebuffer_width=1080</span><br></pre></td></tr></table></figure>
+
+<p>7）重启就可以像自己笔记本一样正常显示了。</p>
+<h4 id="4-3-TeamViewer"><a href="#4-3-TeamViewer" class="headerlink" title="4.3 TeamViewer"></a>4.3 TeamViewer</h4><p>关于树莓派登录控制提到的三个软件更详细的使用方法可以参考《三个工具实现PC端远程连接、桌面共享和文件传输》。</p>
+<h3 id="5-树莓派配置并使用USB摄像头。"><a href="#5-树莓派配置并使用USB摄像头。" class="headerlink" title="5.树莓派配置并使用USB摄像头。"></a>5.树莓派配置并使用USB摄像头。</h3><p>将USB摄像头外接在树莓派，打开终端，输入：<code>lsusb</code></p>
+<p><img src="http://yanxuan.nosdn.127.net/2c019104cf178acda60cc756650fd65d.png" alt="72.png"></p>
+<p>终端继续输入<code>sudo apt-get install fswebcam</code></p>
+<p>下载完成后，终端输入<code>fswebcam --no-banner -r 640*480 camera.jpg</code>可以在/home/pi目录下生成一个当前摄像头拍摄到的实时照片。以此证明USB摄像头工作正常。</p>
+<blockquote>
+<p>介绍了和树莓派搭配使用的软件，那么问题来了，怎么样能以最快的速度下载安装好这些软件呢？</p>
+<p>公众号后台回复“树莓派基本工具”即可获得百度云链接。</p>
+<p>对基本编程感兴趣的童鞋不能错过树莓派幺！</p>
+</blockquote>
+<p><img src="http://yanxuan.nosdn.127.net/acd66f19434f4535174a351b5300273d.png" alt="Snipaste_2019-05-20_23-51-04.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/04/21/Win10环境下安装GPU版TensorFlow-显卡RTX2060/" rel="next" title="Win10环境下安装GPU版TensorFlow-显卡RTX2060.md">
+                <i class="fa fa-chevron-left"></i> Win10环境下安装GPU版TensorFlow-显卡RTX2060.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/year/05/12/Typora：极简Markdown编辑器/" rel="prev" title="基于Typora的Markdown编辑器使用教程">
+                基于Typora的Markdown编辑器使用教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mr.Chen">
+            
+              <p class="site-author-name" itemprop="name">Mr.Chen</p>
+              <p class="site-description motion-element" itemprop="description">立志做一个会写作的程序员。这辈子最大的野心是成为一个快乐而有趣的人，愿一世无悔追逐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=332653562" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_42146017" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/chen-kai-xiang-37/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-引言"><span class="nav-text">1.引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-系统安装"><span class="nav-text">2.系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-安装包（百度云提供下载链接）"><span class="nav-text">2.1 安装包（百度云提供下载链接）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-树莓派系统镜像烧写"><span class="nav-text">2.2 树莓派系统镜像烧写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Windows下备份（还原）树莓派"><span class="nav-text">2.3 Windows下备份（还原）树莓派</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-基本设置"><span class="nav-text">3.基本设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-换源"><span class="nav-text">3.1 换源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）给Raspbian的包管理器apt-get换源"><span class="nav-text">1）给Raspbian的包管理器apt-get换源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）给Python的第三方模块安装工具pip换源"><span class="nav-text">2）给Python的第三方模块安装工具pip换源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2树莓派启动"><span class="nav-text">3.2树莓派启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-配置WIFI"><span class="nav-text">3.3 配置WIFI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-本地化设置"><span class="nav-text">3.4 本地化设置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）系统语言设置"><span class="nav-text">1）系统语言设置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）系统时区时间设置"><span class="nav-text">2）系统时区时间设置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）系统键盘布局设置"><span class="nav-text">3）系统键盘布局设置</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#4-树莓派的登录控制"><span class="nav-text">4.树莓派的登录控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-SecureCRT"><span class="nav-text">4.1  SecureCRT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-VNC-Viewer"><span class="nav-text">4.2 VNC Viewer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-TeamViewer"><span class="nav-text">4.3 TeamViewer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-树莓派配置并使用USB摄像头。"><span class="nav-text">5.树莓派配置并使用USB摄像头。</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
