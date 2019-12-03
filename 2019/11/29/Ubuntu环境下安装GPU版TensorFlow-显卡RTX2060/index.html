@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Linux,GPU,RTX2060,">
+  <meta name="keywords" content="GPU,Linux,RTX2060,">
 
 
 
@@ -124,7 +124,7 @@
 
 
 <meta name="description" content="一、背景系统：Ubuntu16.04 GPU: RTX 2060 tensorflow版本与cuda和cudnn的对应关系： https://tensorflow.google.cn/install/source 先前在Windows里面搭建深度学习环境时选择的就是tensorflow-gpu==1.12.0，可以进行模型的训练。故此处选择的cuda和cudnn如下。">
-<meta name="keywords" content="Linux,GPU,RTX2060">
+<meta name="keywords" content="GPU,Linux,RTX2060">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060">
 <meta property="og:url" content="https://remarkable-chen.github.io/2019/11/29/Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060/index.html">
@@ -140,7 +140,7 @@
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/95c0b8b5491f932ce306298761caa4df.png">
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/535e847e044298a03a824d1d8c1972ad.png">
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/4dfdd65ca485946243da8d29247ffb06.png">
-<meta property="og:updated_time" content="2019-12-03T01:00:30.208Z">
+<meta property="og:updated_time" content="2019-12-03T01:06:55.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060">
 <meta name="twitter:description" content="一、背景系统：Ubuntu16.04 GPU: RTX 2060 tensorflow版本与cuda和cudnn的对应关系： https://tensorflow.google.cn/install/source 先前在Windows里面搭建深度学习环境时选择的就是tensorflow-gpu==1.12.0，可以进行模型的训练。故此处选择的cuda和cudnn如下。">
@@ -453,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  814 字
+                  817 字
                 </span>
               
 
@@ -498,21 +498,16 @@
 <p><img src="http://yanxuan.nosdn.127.net/0dcd0bc7628c63cbb74874f45aaa0b73.png" alt="UTOOLS1575272772328.png"></p>
 <a id="more"></a>
 
-<h3 id="二、安装CUDA"><a href="#二、安装CUDA" class="headerlink" title="二、安装CUDA"></a>二、安装CUDA</h3><p>1.去<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>点击打开链接下载CUDA，需要注册一个账号（上外网登陆下载比较快）</p>
+<h3 id="二、安装CUDA"><a href="#二、安装CUDA" class="headerlink" title="二、安装CUDA"></a>二、安装CUDA</h3><p>1）去<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>点击打开链接下载CUDA，需要注册一个账号（上外网登陆下载比较快）</p>
 <p><img src="http://yanxuan.nosdn.127.net/ac707a3dc0cfd74bb2c96d9ef1786593.png" alt="UTOOLS1575279274058.png"></p>
 <p>注意：下载runfile（local）文件</p>
-<ol start="2">
-<li><p>下载完成以后，找到CUDA9.0所在位置（我的是放在<strong>下载</strong>目录下），终端输入：.</p>
+<p>2）下载完成以后，找到CUDA9.0所在位置（我的是放在<strong>下载</strong>目录下），终端输入：.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x cuda_9.0.176_384.81_linux.run</span><br><span class="line">sudo ./cuda_9.0.176_384.81_linux.run</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
 <p>安装过程中会有几个选项需要确认：</p>
 <p>注意：不要安装cuda自带的显卡驱动（第一步不要安装，因为在上一篇文章已经安装完），其他的直接选y，路径输入新的路径.</p>
 <p><img src="http://yanxuan.nosdn.127.net/980627760e5649619f19f2a4f64bf7b6.png" alt="UTOOLS1575280012799.png"></p>
-<ol start="3">
-<li>配置环境</li>
-</ol>
+<p>3）配置环境</p>
 <p>安装完成以后，需要把cuda路径添加到当前用户的配置文件里：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.bashrc</span><br></pre></td></tr></table></figure>
 
@@ -522,9 +517,7 @@
 <p>然后执行如下命令使路径生效：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. ~/.bashrc</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>验证</li>
-</ol>
+<p>4）验证</p>
 <p>终端输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
 
@@ -596,9 +589,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
             <a href="/tags/GPU/" rel="tag"># GPU</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
             <a href="/tags/RTX2060/" rel="tag"># RTX2060</a>
           

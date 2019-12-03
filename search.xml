@@ -3,13 +3,13 @@
   <entry>
     <title><![CDATA[Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060]]></title>
     <url>%2F2019%2F11%2F29%2FUbuntu%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85GPU%E7%89%88TensorFlow-%E6%98%BE%E5%8D%A1RTX2060%2F</url>
-    <content type="text"><![CDATA[一、背景系统：Ubuntu16.04 GPU: RTX 2060 tensorflow版本与cuda和cudnn的对应关系： https://tensorflow.google.cn/install/source 先前在Windows里面搭建深度学习环境时选择的就是tensorflow-gpu==1.12.0，可以进行模型的训练。故此处选择的cuda和cudnn如下。 二、安装CUDA1.去官网点击打开链接下载CUDA，需要注册一个账号（上外网登陆下载比较快） 注意：下载runfile（local）文件 下载完成以后，找到CUDA9.0所在位置（我的是放在下载目录下），终端输入：. 12sudo chmod +x cuda_9.0.176_384.81_linux.runsudo ./cuda_9.0.176_384.81_linux.run 安装过程中会有几个选项需要确认： 注意：不要安装cuda自带的显卡驱动（第一步不要安装，因为在上一篇文章已经安装完），其他的直接选y，路径输入新的路径. 配置环境 安装完成以后，需要把cuda路径添加到当前用户的配置文件里： 1sudo vim ~/.bashrc 将安装路径添加到文件末尾： 12export PATH=/usr/local/cuda-9.0/bin:$PATHexport LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH 然后执行如下命令使路径生效： 1. ~/.bashrc 验证 终端输入： 1nvcc -V 可以看到cuda的版本信息： 接着尝试运行一下cuda中自带的例子： 123cd /usr/local/cuda-9.0/samples/1_Utilities/deviceQuerysudo make./deviceQuery 可以看到输出成功： 三、安装cuDNN官网下载cuda对应版本的cudnn点击打开链接。 注意：下载cuDNN v7.0.5 Library for Linux 下载完成以后将其解压到Cuda的目录当中，依次执行如下命令： 1234tar -xzvf cudnn-9.0-linux-x64-v7.tgzsudo cp cuda/include/cudnn.h /usr/local/cuda/includesudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn* 四、安装 Tensorflow1)切换python版本 Ubuntu16.04 LTS环境下有两个版本的Python，分别是Python3.5和Python2.7。Ubuntu默认的是python 2.7版本，我们需要切换默认版本为Python3.5。 如下就是设置python3.5的路径，并设置优先级为200，默认优先级最高的优先使用 1sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 200 去官网复制get-pip.py脚本文件:点击打开链接。 复制好以后，输入如下指令，安装pip 12cd ~/下载/sudo python get-pip.py 终端键入 pip -V 查看，是否正确指向python3.5包的路径并且结尾是否是python3.5，无误后就可以安装其他包什么的了。 3)利用pip安装Tensorflow： 1sudo pip install tensorflow-gpu==1.12.0 4)如果上一步因为网速等原因下载失败，就直接从官方库里下载release包（.whl文件）进行安装。不过需要先从下面选择自己对应的系统与环境。 下载好安装包以后，进入到对应下载目录下直接安装即可： 12cd ~/下载/sudo pip install tensorflow_gpu-1.12.0-cp35-cp35m-manylinux1_x86_64.whl 五. 测试1）进入python，键入以下代码 1234import tensorflow as tfhello = tf.constant('Hello Tensorflow')sess = tf.Session()print(sess.run(hello)) 如下图所示，则表明Tensorflow安装成功 注：红框里的两行代码参见博客点击打开链接 2) 查看tensorflow版本 在python环境中输入： 123import tensorflow as tftf.__version__ #查看版本tf.__path__ #查看路径 以上。]]></content>
+    <content type="text"><![CDATA[一、背景系统：Ubuntu16.04 GPU: RTX 2060 tensorflow版本与cuda和cudnn的对应关系： https://tensorflow.google.cn/install/source 先前在Windows里面搭建深度学习环境时选择的就是tensorflow-gpu==1.12.0，可以进行模型的训练。故此处选择的cuda和cudnn如下。 二、安装CUDA1）去官网点击打开链接下载CUDA，需要注册一个账号（上外网登陆下载比较快） 注意：下载runfile（local）文件 2）下载完成以后，找到CUDA9.0所在位置（我的是放在下载目录下），终端输入：. 12sudo chmod +x cuda_9.0.176_384.81_linux.runsudo ./cuda_9.0.176_384.81_linux.run 安装过程中会有几个选项需要确认： 注意：不要安装cuda自带的显卡驱动（第一步不要安装，因为在上一篇文章已经安装完），其他的直接选y，路径输入新的路径. 3）配置环境 安装完成以后，需要把cuda路径添加到当前用户的配置文件里： 1sudo vim ~/.bashrc 将安装路径添加到文件末尾： 12export PATH=/usr/local/cuda-9.0/bin:$PATHexport LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH 然后执行如下命令使路径生效： 1. ~/.bashrc 4）验证 终端输入： 1nvcc -V 可以看到cuda的版本信息： 接着尝试运行一下cuda中自带的例子： 123cd /usr/local/cuda-9.0/samples/1_Utilities/deviceQuerysudo make./deviceQuery 可以看到输出成功： 三、安装cuDNN官网下载cuda对应版本的cudnn点击打开链接。 注意：下载cuDNN v7.0.5 Library for Linux 下载完成以后将其解压到Cuda的目录当中，依次执行如下命令： 1234tar -xzvf cudnn-9.0-linux-x64-v7.tgzsudo cp cuda/include/cudnn.h /usr/local/cuda/includesudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn* 四、安装 Tensorflow1)切换python版本 Ubuntu16.04 LTS环境下有两个版本的Python，分别是Python3.5和Python2.7。Ubuntu默认的是python 2.7版本，我们需要切换默认版本为Python3.5。 如下就是设置python3.5的路径，并设置优先级为200，默认优先级最高的优先使用 1sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 200 去官网复制get-pip.py脚本文件:点击打开链接。 复制好以后，输入如下指令，安装pip 12cd ~/下载/sudo python get-pip.py 终端键入 pip -V 查看，是否正确指向python3.5包的路径并且结尾是否是python3.5，无误后就可以安装其他包什么的了。 3)利用pip安装Tensorflow： 1sudo pip install tensorflow-gpu==1.12.0 4)如果上一步因为网速等原因下载失败，就直接从官方库里下载release包（.whl文件）进行安装。不过需要先从下面选择自己对应的系统与环境。 下载好安装包以后，进入到对应下载目录下直接安装即可： 12cd ~/下载/sudo pip install tensorflow_gpu-1.12.0-cp35-cp35m-manylinux1_x86_64.whl 五. 测试1）进入python，键入以下代码 1234import tensorflow as tfhello = tf.constant('Hello Tensorflow')sess = tf.Session()print(sess.run(hello)) 如下图所示，则表明Tensorflow安装成功 注：红框里的两行代码参见博客点击打开链接 2) 查看tensorflow版本 在python环境中输入： 123import tensorflow as tftf.__version__ #查看版本tf.__path__ #查看路径 以上。]]></content>
       <categories>
         <category>工具</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>GPU</tag>
+        <tag>Linux</tag>
         <tag>RTX2060</tag>
       </tags>
   </entry>
@@ -143,8 +143,8 @@
         <category>工具</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>Linux</tag>
+        <tag>ubuntu</tag>
         <tag>VMware Tools</tag>
       </tags>
   </entry>
