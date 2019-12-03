@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,双系统,">
 
 
 
@@ -123,16 +123,25 @@
 
 
 
-<meta name="description" content="无人驾驶及嵌入式硬件相关。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="July">
-<meta property="og:url" content="https://remarkable-chen.github.io/archives/2019/index.html">
+<meta name="description" content="前言在Windows10系统上搭建完深度学习环境用于无人驾驶中的目标检测后，想在Linux系统上再尝试一下。故先需要装一个双系统，本文介绍如何安装双系统以及装完系统后的输入法和英伟达显卡驱动配置。">
+<meta name="keywords" content="Linux,双系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux-Windows10双系统安装及深度学习环境准备">
+<meta property="og:url" content="https://remarkable-chen.github.io/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/index.html">
 <meta property="og:site_name" content="July">
-<meta property="og:description" content="无人驾驶及嵌入式硬件相关。">
+<meta property="og:description" content="前言在Windows10系统上搭建完深度学习环境用于无人驾驶中的目标检测后，想在Linux系统上再尝试一下。故先需要装一个双系统，本文介绍如何安装双系统以及装完系统后的输入法和英伟达显卡驱动配置。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/f88fd39f48c7dc0db34bf9932d348413.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/0dcd0bc7628c63cbb74874f45aaa0b73.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/3dfb9d5645a09f08a8e92875e794dee7.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/516512428c1e8ac1815e602f02a779e7.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/c9ccab7932de12b51580ca2410e396c4.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/40c85b103e6442eb1649bf7741540a16.png">
+<meta property="og:updated_time" content="2019-12-02T07:53:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="July">
-<meta name="twitter:description" content="无人驾驶及嵌入式硬件相关。">
+<meta name="twitter:title" content="Linux-Windows10双系统安装及深度学习环境准备">
+<meta name="twitter:description" content="前言在Windows10系统上搭建完深度学习环境用于无人驾驶中的目标检测后，想在Linux系统上再尝试一下。故先需要装一个双系统，本文介绍如何安装双系统以及装完系统后的输入法和英伟达显卡驱动配置。">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/f88fd39f48c7dc0db34bf9932d348413.png">
 
 
 
@@ -162,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://remarkable-chen.github.io/archives/2019/">
+  <link rel="canonical" href="https://remarkable-chen.github.io/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/">
 
 
 
 
 
-  <title>归档 | July</title>
+  <title>Linux-Windows10双系统安装及深度学习环境准备 | July</title>
   
 
 
@@ -192,7 +201,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -328,391 +337,393 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Linux-Windows10双系统安装及深度学习环境准备</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-27T18:08:16+08:00">
+                2019-11-27
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
           
-        
-        嗯..! 目前共计 22 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/29/Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060/" itemprop="url">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k 字
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-29T10:45:26+08:00" content="2019-11-29">
-          11-29
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/27/Linux-Windows10双系统安装及深度学习环境准备/" itemprop="url">
-              
-                <span itemprop="name">Linux-Windows10双系统安装及深度学习环境准备</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-27T18:08:16+08:00" content="2019-11-27">
-          11-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在Windows10系统上搭建完深度学习环境用于无人驾驶中的目标检测后，想在Linux系统上再尝试一下。故先需要装一个双系统，本文介绍如何安装双系统以及装完系统后的输入法和英伟达显卡驱动配置。</p>
+<a id="more"></a>
 
-        
-        
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><h4 id="1-安装双系统"><a href="#1-安装双系统" class="headerlink" title="1.安装双系统"></a>1.安装双系统</h4><p>主要参考<a href="https://blog.csdn.net/fanxueya1322/article/details/90205143#Windows__Linux__0" target="_blank" rel="noopener">Windows + Linux 双系统的安装</a>这篇文章。按照文章所述步骤来，基本没有问题。主要分为如下几个步骤：</p>
+<ul>
+<li><p>1.1 U盘启动盘的制作（将Ubuntu系统<strong>ISO</strong> 格式镜像文件借助<strong>Rufus工具</strong>加载进U盘，从而将U盘制作成启动盘）</p>
+</li>
+<li><p>1.2 分配磁盘空间（ 留出磁盘空间用于安装ubuntu 系统）</p>
+</li>
+<li><p>2.1 分区</p>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">建议大小</th>
+<th align="center">格式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/</td>
+<td align="center">150G-200G</td>
+<td align="center">ext4</td>
+<td align="center">根目录</td>
+</tr>
+<tr>
+<td align="center">/tmp</td>
+<td align="center">5G左右</td>
+<td align="center">ext4</td>
+<td align="center">系统的临时文件，一般系统重启不会被保存。</td>
+</tr>
+<tr>
+<td align="center">/boot</td>
+<td align="center">1G左右</td>
+<td align="center">ext4</td>
+<td align="center">系统引导起始位置，建议：应该大于400MB或1GB Linux的内核及引导系统程序所需要的文件，比如 vmlinuz initrd.img文件都位于这个目录中。在一般情况下，GRUB 或 LILO 系统引导管理器也位于这个目录；启动撞在文件存放位置，如kernels，initrd，grub。</td>
+</tr>
+<tr>
+<td align="center">/home</td>
+<td align="center">尽量大些</td>
+<td align="center">ext4</td>
+<td align="center">用户工作目录；个人配置文件，如个人环境变量等；所有账号分配一个工作目录。</td>
+</tr>
+<tr>
+<td align="center">swap</td>
+<td align="center">物理内存的两倍</td>
+<td align="center">交换空间</td>
+<td align="center">交换空间：交换分区相当于Windows中的“虚拟内存”，如果内存低的话（1-4G），物理内存的两倍，高点的话（8-16G）要么等于物理内存，要么物理内存+2g左右</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>2.2 安装（分区完成准备安装）</p>
+</li>
+<li><p>3.1 启动项修改（安装好双系统后你的电脑开机时可能默认还是选择 windows 启动，可以通过<strong>EasyBCD工具</strong>对启动顺序进行修改）</p>
+</li>
+</ul>
+<h4 id="2-安装搜狗输入法"><a href="#2-安装搜狗输入法" class="headerlink" title="2.安装搜狗输入法"></a>2.安装搜狗输入法</h4><p>Linux自带的输入法不是太好用，而且正常在Windows系统里面使用的是搜狗输入法，并且搜狗输入法发行了Linux版本，故没有任何理由不在Linux系统上安装一个 搜狗输入法。</p>
+<p>1）下载搜狗输入法（注意32位和64位）</p>
+<p><a href="https://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">https://pinyin.sogou.com/linux/?r=pinyin</a></p>
+<p>2）按键<code>Ctr+Alt+T</code>打开终端，输入以下命令切换到下载文件夹:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/下载/</span><br></pre></td></tr></table></figure>
 
-        
+<p>3) 查看是否下载完成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>4)  安装输入法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/27/读取天气信息，并通过QQ邮箱每天给好友定时发送/" itemprop="url">
-              
-                <span itemprop="name">读取天气信息，并通过QQ邮箱每天给好友定时发送</span>
-              
-            </a>
-        
-      </h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>会报错</span><br><span class="line">dpkg: 处理软件包 sogoupinyin (--install)时出错：</span><br><span class="line"> 依赖关系问题 - 仍未被配置</span><br><span class="line">正在处理用于 mime-support (3.60ubuntu1) 的触发器 ...</span><br><span class="line">正在处理用于 libglib2.0-0:i386 (2.56.1-2ubuntu1) 的触发器 ...</span><br><span class="line">覆盖文件 /usr/glib-2.0/schemas/50_sogoupinyin.gschema.override 中指定的方案 org.gnome.settings-daemon.plugins.xsettings 中没有键 Gtk/IMModule；忽略对此键的覆盖。</span><br><span class="line">正在处理用于 libglib2.0-0:amd64 (2.56.1-2ubuntu1) 的触发器 ...</span><br><span class="line">覆盖文件 /usr/glib-2.0/schemas/50_sogoupinyin.gschema.override 中指定的方案 org.gnome.settings-daemon.plugins.xsettings 中没有键 Gtk/IMModule；忽略对此键的覆盖。</span><br><span class="line">正在处理用于 gnome-menus (3.13.3-11ubuntu1) 的触发器 ...</span><br><span class="line">正在处理用于 desktop-file-utils (0.23-1ubuntu3) 的触发器 ...</span><br><span class="line">正在处理用于 shared-mime-info (1.9-2) 的触发器 ...</span><br><span class="line">正在处理用于 hicolor-icon-theme (0.17-2) 的触发器 ...</span><br><span class="line">在处理时有错误发生：</span><br><span class="line"> sogoupinyin</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-27T21:33:16+08:00" content="2019-10-27">
-          10-27
-        </time>
-      </div>
+<p>5）解决依赖问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -f install</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
+<p>6)再次安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb</span><br></pre></td></tr></table></figure>
 
+<p>7)从桌面右上角<strong>系统设置</strong>里面点击“<strong>语言支持</strong>”，从跳出来的第一个对话框选择“<strong>安装</strong>”按钮，然后就开始安装，期间会提示输入密码。</p>
+<p>8）重启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
+<p>9）点击右上角键盘标志，选择“<strong>配置当前输入法</strong>”，然后点击“<strong>+</strong>”，添加合适的输入法，我这里最终选择的是“<strong>键盘-英语（美国）+搜狗拼音</strong>“。这样，就和在Windows10上使用搜狗输入法时一样，按”<strong>Shift键</strong>“就可以切换中文和英文输入法。</p>
+<p><img src="http://yanxuan.nosdn.127.net/f88fd39f48c7dc0db34bf9932d348413.png" alt="UTOOLS1574905894078.png"></p>
+<h4 id="3-安装英伟达显卡驱动"><a href="#3-安装英伟达显卡驱动" class="headerlink" title="3.安装英伟达显卡驱动"></a>3.安装英伟达显卡驱动</h4><p>一方便是由于配置深度学习环境的需要，另一方面是由于没有显卡驱动的话，整个界面的分辨率有限，影响观感。</p>
+<p>1）安装环境</p>
+<ul>
+<li>操作系统：Ubuntu 16.04 LTS</li>
+<li>显卡：NVIDIA GeForce RTX 2060</li>
+</ul>
+<p>2）在正式入坑深度学习环境搭建之前，先要确定两点。</p>
+<p>tensorflow版本与cuda和cudnn的对应关系：</p>
+<p><a href="https://tensorflow.google.cn/install/source" target="_blank" rel="noopener">https://tensorflow.google.cn/install/source</a></p>
+<p>先前在Windows里面搭建深度学习环境时选择的就是tensorflow-gpu==1.12.0，可以进行模型的训练。故此处选择的cuda和cudnn如下。</p>
+<p><img src="http://yanxuan.nosdn.127.net/0dcd0bc7628c63cbb74874f45aaa0b73.png" alt="UTOOLS1575272772328.png"></p>
+<p>CUDA要求的linux下的Driver Version：</p>
+<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html" target="_blank" rel="noopener">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
+<p>根据CUDA为9.0，故只要驱动版本大于等于384.81就可以了，下面介绍安装最新的驱动版本为440.36完全满足要求。</p>
+<p><img src="http://yanxuan.nosdn.127.net/3dfb9d5645a09f08a8e92875e794dee7.png" alt="UTOOLS1575272890489.png"></p>
+<p>3)  打开NVIDIA驱动官网，选择最新的一个驱动程序，下载</p>
+<p><img src="http://yanxuan.nosdn.127.net/516512428c1e8ac1815e602f02a779e7.png" alt="UTOOLS1574905917053.png"></p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>版本选择Linux，不要下载Windows10 64bits</li>
+</ul>
+<p>4）禁用nouveau驱动</p>
+<p>打开文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/modprobe.d/blacklist.conf</span><br></pre></td></tr></table></figure>
+
+<p>在文件末尾添加以下几行命令 </p>
+<pre><code>blacklist nouveau
+blacklist rivafb
+blacklist rivatv
+blacklist nvidiafb
+options nouveau modeset=0</code></pre><p>5) 更新Linux系统内核</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-initramfs -u</span><br></pre></td></tr></table></figure>
+
+<p>6) 重启并检查nouveau驱动是否成功被禁</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br><span class="line">lsmod | grep nouveau</span><br></pre></td></tr></table></figure>
+
+<p>重启电脑后，打开终端输入命令以查看nouveau驱动是否成功被禁，命令无返回则是成功禁用。</p>
+<p>7) 安装驱动.run文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/下载/</span><br><span class="line">sudo sh NVIDIA-Linux-x86_64-440.36.run -no-x-check -no-nouveau-check -no-opengl-files</span><br></pre></td></tr></table></figure>
+
+<p>参数解释：</p>
+<pre><code>–no-x-check：表示安装驱动时不检查X服务（图形接口服务），如果没有关闭图形界面则必须加上，否则反之。
+–no-nouveau-check：表示安装驱动时不检查nouveau驱动，这也是非必需的，因为我们已经在前面步骤中禁用驱动。
+–no-opengl-files：表示只安装驱动文件，不安装OpenGL文件。这个参数不可省略，否则会导致登陆界面死循环，英语一般称为”login loop”或者”stuck in login”。 </code></pre><p>8) 安装进行时的选项 </p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The distribution-provided pre-install script failed!  Are you sure you want to continue?</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>Unable to find a suitable destination to install 32-bit compatibility libraries. Your system may not be set up for 32-bit compatibility. 32-bit compatibility files will not be installed; if you wish to install them, re-run the installation and set a valid directory with the –compat32-libdir option.</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Would you like to run the nvidia-xconfigutility to automatically update your x configuration so that the NVIDIA x driver will be used when you restart x? Any pre-existing x confile will be backed up.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Your X configuration file has been successfully updated.  Installation of the NVIDIA Accelerated Graphics Driver for Linux-x86_64 (version: 430.40) is now complete.</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+<p>9)在命令行中输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>如出现以下画面，即证明已正确安装一半。</p>
+<p><img src="http://yanxuan.nosdn.127.net/c9ccab7932de12b51580ca2410e396c4.png" alt="UTOOLS1574907204312.png"></p>
+<p>10）重启电脑</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>11) 接着在命令行中输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-settings</span><br></pre></td></tr></table></figure>
+
+<p>出现以下界面，代表显卡安装完全正确。</p>
+<p><img src="http://yanxuan.nosdn.127.net/40c85b103e6442eb1649bf7741540a16.png" alt="UTOOLS1574907174972.png"></p>
+<h3 id="后文"><a href="#后文" class="headerlink" title="后文"></a>后文</h3><p>大环境搭建好了，下一步就准备搭建深度学习环境用于目标检测了。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/09/基于Hexo和GitHub免费搭建个人博客网站/" itemprop="url">
-              
-                <span itemprop="name">基于Hexo和GitHub免费搭建个人博客网站</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-09T00:44:16+08:00" content="2019-10-09">
-          10-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/17/无人驾驶环境感知--基于深度学习的车道线检测/" itemprop="url">
-              
-                <span itemprop="name">无人驾驶环境感知--基于深度学习的车道线检测</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-17T14:58:22+08:00" content="2019-09-17">
-          09-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/16/linux常用命令以及vim编辑器的使用/" itemprop="url">
-              
-                <span itemprop="name">Linux常用命令及vim编辑器的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-16T17:58:22+08:00" content="2019-09-16">
-          09-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/31/七个Windows工具提升你的办公、开发效率/" itemprop="url">
-              
-                <span itemprop="name">七个Windows工具提升你的办公、开发效率</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T13:04:16+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/26/五个Windows工具提升你的学习、科研效率/" itemprop="url">
-              
-                <span itemprop="name">五个Windows工具提升你的学习、科研效率</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-26T12:49:16+08:00" content="2019-08-26">
-          08-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/23/Cmake使用教程/" itemprop="url">
-              
-                <span itemprop="name">Cmake使用教程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-23T10:55:16+08:00" content="2019-05-23">
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/12/Typora：极简Markdown编辑器/" itemprop="url">
-              
-                <span itemprop="name">基于Typora的Markdown编辑器使用教程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-12T08:49:16+08:00" content="2019-05-12">
-          05-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/双系统/" rel="tag"># 双系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/27/读取天气信息，并通过QQ邮箱每天给好友定时发送/" rel="next" title="读取天气信息，并通过QQ邮箱每天给好友定时发送">
+                <i class="fa fa-chevron-left"></i> 读取天气信息，并通过QQ邮箱每天给好友定时发送
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/29/Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060/" rel="prev" title="Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060">
+                Ubuntu环境下安装GPU版TensorFlow-显卡RTX2060 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -720,6 +731,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -740,8 +758,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -831,6 +858,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装双系统"><span class="nav-text">1.安装双系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装搜狗输入法"><span class="nav-text">2.安装搜狗输入法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装英伟达显卡驱动"><span class="nav-text">3.安装英伟达显卡驱动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后文"><span class="nav-text">后文</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1003,6 +1046,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
