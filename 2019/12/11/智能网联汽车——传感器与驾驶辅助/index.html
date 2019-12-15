@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="传感器,驾驶辅助,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、传感器1.汽车传感器特点①适应性强，耐恶劣环境 ②抗干扰能力强 ③稳定性和可靠性高 ④性价比高，大批量生产">
+<meta name="keywords" content="传感器,驾驶辅助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能网联汽车——传感器与驾驶辅助">
+<meta property="og:url" content="https://remarkable-chen.github.io/2019/12/11/智能网联汽车——传感器与驾驶辅助/index.html">
+<meta property="og:site_name" content="July">
+<meta property="og:description" content="一、传感器1.汽车传感器特点①适应性强，耐恶劣环境 ②抗干扰能力强 ③稳定性和可靠性高 ④性价比高，大批量生产">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/229d04f15fed2c3aa1377b48c638824f.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/ef217b65cacd5b9a655989e1be93a7c8.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/74e2c2c96cb5c891dff57d96faf1ff91.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/f59f7db337907c7e4fdd6282da1b3f48.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2d0c7a3578f1fe56e60c76eafe7e6f0a.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/9f0d296672c0e5549afcc44bdba26634.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/b3f5b877104badb5b1d34c07247f68b3.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/ec077f31909d2c678306c7d4a4a984db.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/e76b4a4cd9754c2b92ea1916dd83f913.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/09443f1dbf239c34e626e8dd29480bb4.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8507640ddb50aef5fbc3b6b35b47832e.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/000ce414b3173afd7fefa339ff31362a.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8b9aabe674a9d33c21fa3219decaea7e.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/6847f1b00196883f38e1bff4c2aa840b.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/d6236370c9c71ba3190b14141ff7097b.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/00e2c2f4aad4aec9a480bafa49d0b94c.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/892a28d2e32d0fee4ae812b50016f98b.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/46b6e7873112f5a485c270060ee214bb.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/71390bc54e0f4ddc5b49d154ac130444.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/05b4424caa295581a83c32a7ca3eb72d.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/55a0950bcb3521029728e6d046dfc521.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/910d759fd89d2232e7a0bcbf28b59860.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/00c834c96c10fa60fcd73dfcd7374a6e.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/4aa6f561f380fe7fb8c44200cdb6e64e.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/01f43e65bad5e2715f81d8eba8decf41.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/6424f06aeecf340585ba9f60207fab15.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/bed3e54d117ca63ae66214c38e51dcbd.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2ebf78c60bdb2254551a9d3252965ef2.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/d22b9132b382cd012da48e375df0dc06.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/342309ed918943f54855f38575f30f46.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/1c666dae517f8310283fe7744e9fa331.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/224a20307eddfd26a14acca64fb96b5c.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/3d4921d3e7e514034717620bd534f0a7.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/62e51ece962fb03a8f279a16cf95c551.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/96a82f4c2d7ef4157c0c4fb397caab5a.jpg">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/cb3d0e93101ee46c3ddcb903699f8c6f.jpg">
+<meta property="og:updated_time" content="2019-12-15T17:58:32.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能网联汽车——传感器与驾驶辅助">
+<meta name="twitter:description" content="一、传感器1.汽车传感器特点①适应性强，耐恶劣环境 ②抗干扰能力强 ③稳定性和可靠性高 ④性价比高，大批量生产">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/229d04f15fed2c3aa1377b48c638824f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://remarkable-chen.github.io/2019/12/11/智能网联汽车——传感器与驾驶辅助/">
+
+
+
+
+
+  <title>智能网联汽车——传感器与驾驶辅助 | July</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">July</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just u like yourself。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/2019/12/11/智能网联汽车——传感器与驾驶辅助/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">智能网联汽车——传感器与驾驶辅助</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-11T22:39:16+08:00">
+                2019-12-11
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/智能网联汽车/" itemprop="url" rel="index">
+                    <span itemprop="name">智能网联汽车</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/11/智能网联汽车——传感器与驾驶辅助/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/11/智能网联汽车——传感器与驾驶辅助/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、传感器"><a href="#一、传感器" class="headerlink" title="一、传感器"></a>一、传感器</h3><h4 id="1-汽车传感器特点"><a href="#1-汽车传感器特点" class="headerlink" title="1.汽车传感器特点"></a>1.汽车传感器特点</h4><p>①适应性强，耐恶劣环境</p>
+<p>②抗干扰能力强</p>
+<p>③稳定性和可靠性高</p>
+<p>④性价比高，大批量生产</p>
+<a id="more"></a>
+
+<h4 id="2-种类"><a href="#2-种类" class="headerlink" title="2.种类"></a>2.种类</h4><h5 id="2-1视觉传感器"><a href="#2-1视觉传感器" class="headerlink" title="2.1视觉传感器"></a>2.1视觉传感器</h5><p><strong>组成：</strong></p>
+<p>广义的视觉传感器主要由光源、镜头、感光传感器、模数转换器、图像处理器、图像存储器等组成。</p>
+<p><img src="http://yanxuan.nosdn.127.net/229d04f15fed2c3aa1377b48c638824f.png" alt="1.png"></p>
+<p>狭义的视觉传感器是指感光传感器,它的作用是将镜头所成的图像转变为数字或模拟信号输出,是视觉检测的核心部件,主要有CCD感光传感器和CMOS感光传感器。</p>
+<p><img src="http://yanxuan.nosdn.127.net/ef217b65cacd5b9a655989e1be93a7c8.png" alt="2.png"></p>
+<p>上图为CCD和CMOS的区别，目前车载摄像头使用的比较多的是CMOS感光传感器。</p>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li>它的范围广、数据多，分辨率比较高，能够感知颜色。</li>
+<li>使用环境严格，受光照条件影响较大。</li>
+</ul>
+<p><strong>分类：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/74e2c2c96cb5c891dff57d96faf1ff91.png" alt="3.png"></p>
+<p><strong>特点：</strong>摄像机以一定的角度和位置安装在车辆上,为了摄像机所生成的图像像素坐标系中的点坐标与摄像机环境坐标系中的物点坐标之间的转换关系，需要进行摄像机标定。</p>
+<p><strong>应用：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/f59f7db337907c7e4fdd6282da1b3f48.png" alt="Snipaste_2019-12-11_19-57-55.png"></p>
+<h5 id="2-2激光雷达"><a href="#2-2激光雷达" class="headerlink" title="2.2激光雷达"></a>2.2激光雷达</h5><p><strong>原理：</strong>向外发射激光束，根据激光遇到障碍物后的折返时间、强弱程度等，计算目标与自己的相对距离、方位、运动状态及表面光学特性。激光光束可以准确测量视场中物体轮廓边沿与设备间的相对距离，这些轮廓信息组成所谓的“<strong>点云</strong>”并绘制出3D环境地图，精度可达到厘米级别。</p>
+<p><img src="http://yanxuan.nosdn.127.net/2d0c7a3578f1fe56e60c76eafe7e6f0a.jpg" alt="2.jpg"></p>
+<p><strong>组成：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/9f0d296672c0e5549afcc44bdba26634.png" alt="4.png"></p>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li><p>因为用的是激光束定位，所以定位非常准确，可以达到cm级别的精度</p>
+</li>
+<li><p>全天候工作，不受光照条件的限制。</p>
+</li>
+<li><p>在浓雾天气下，激光可能会打到空气中的一些漂浮物质，漂浮物的直径如果比较大，可能会影响到激光雷达的准确度</p>
+</li>
+<li><p>价格较贵，谷歌的无人驾驶车辆使用的Velodyne64线激光雷达，价格高达7万美元以上。</p>
+<p><img src="http://yanxuan.nosdn.127.net/b3f5b877104badb5b1d34c07247f68b3.jpg" alt="3.jpg"></p>
+</li>
+</ul>
+<p><strong>应用：</strong>目前行业内的普遍观点认为，要实现Level3及以上级别的无人驾驶，必须配备有更高精度的激光雷达传感器。</p>
+<p><strong>供应商：</strong></p>
+<p>Velodyne:在参加了两届 DARPA无人驾驶汽车挑战赛后,2007年开始专注研究激光雷达,用一款 Velodyne64线进入360°高性能激光雷达领域。</p>
+<p><img src="http://yanxuan.nosdn.127.net/ec077f31909d2c678306c7d4a4a984db.png" alt="5.png"></p>
+<p>Ibeo：Ibeo是一家成立于1998年的公司,2000年被传感器制造商 Sick AG收购。2000年至2008年研发了激光扫描技术、并且开始了若干自动驾驶项目的尝试,2009年公司脱离 Sick AG独立,2010年和法雷奥合作开始量产可用于汽车的产品 Scala。</p>
+<p><img src="http://yanxuan.nosdn.127.net/e76b4a4cd9754c2b92ea1916dd83f913.png" alt="6.png"></p>
+<p>Quanergy：在2017年的CES上也推了自己的新产品:S2.号称是世界上第一软固态激光雷达,内部无任何转动机构,参数是8线,探测范围为10厘米-150米。</p>
+<p> <img src="http://yanxuan.nosdn.127.net/09443f1dbf239c34e626e8dd29480bb4.png" alt="7.png"></p>
+<h5 id="2-3毫米波雷达"><a href="#2-3毫米波雷达" class="headerlink" title="2.3毫米波雷达"></a>2.3毫米波雷达</h5><p><strong>特点：</strong>工作频率通常选在30-300GHz频域（即波长为1-10mm）。结构简单，体积小，可以同时得到目标的相对距离和相对速度以及相对角速度信息。</p>
+<p><img src="http://yanxuan.nosdn.127.net/8507640ddb50aef5fbc3b6b35b47832e.png" alt="Snipaste_2019-12-11_20-12-11.png"></p>
+<p><strong>优缺点：</strong></p>
+<p>可测距离远，与红外激光设备相比较，具有对烟尘雨雾良好的穿透、传播特性，不受雨雪等恶劣天气的影响，抗环境变化能力也比较强</p>
+<p>存在定位不准确的问题，通常毫米波雷达对镜像的定位是比较准确的，但是它的侧向定位并不准确，并且会有很多的误判，分辨率低。</p>
+<p><strong>测量原理:</strong></p>
+<p>一般分为脉冲方式和调频连续波方式两种。</p>
+<ul>
+<li><p>脉冲方式测量原理简单,但由于受技术、元器件等方面影响,实际应用中间很难实现。采用脉冲方式的毫米波雷达需在短时间内发射大功率信号脉冲,结构复杂,成本高。</p>
+</li>
+<li><p>大多数车载毫米波雷达都采用调频连续波的方式,其雷达结构简单，体积小，可以同时得到目标的相对距离和相对速度。</p>
+</li>
+</ul>
+<p><strong>频段分类：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/000ce414b3173afd7fefa339ff31362a.png" alt="10.png"></p>
+<p><strong>应用：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/8b9aabe674a9d33c21fa3219decaea7e.png" alt="Snipaste_2019-12-11_19-59-28.png"></p>
+<p><strong>供应商：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/6847f1b00196883f38e1bff4c2aa840b.png" alt="8.png"></p>
+<p><img src="http://yanxuan.nosdn.127.net/d6236370c9c71ba3190b14141ff7097b.png" alt="9.png"></p>
+<h5 id="2-4超声波传感器"><a href="#2-4超声波传感器" class="headerlink" title="2.4超声波传感器"></a>2.4超声波传感器</h5><p>超声波雷达是一种运用超声波定位的雷达，由于检测距离比较短，通常把它布置在车身的两侧以及后端。</p>
+<p><img src="http://yanxuan.nosdn.127.net/00e2c2f4aad4aec9a480bafa49d0b94c.jpg" alt="5.jpg"></p>
+<p><strong>应用：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/892a28d2e32d0fee4ae812b50016f98b.png" alt="UTOOLS1576066621721.png"></p>
+<h5 id="2-5车载传感器网络"><a href="#2-5车载传感器网络" class="headerlink" title="2.5车载传感器网络"></a>2.5车载传感器网络</h5><p>由安装在移动车辆上的无线传感器节点自组织形成的网络称为车载传感器网络,它可以实现V2V、V2I之间的通信。在车载网络中,车辆都安装了无线的车载单元(OBU),车辆通过这种设备采用短距离无线通信技术与其他车辆通信,也可以与路侧单元(RSU)通信。</p>
+<p><img src="http://yanxuan.nosdn.127.net/46b6e7873112f5a485c270060ee214bb.png" alt="Snipaste_2019-12-11_20-10-29.png"></p>
+<h3 id="二、驾驶辅助系统"><a href="#二、驾驶辅助系统" class="headerlink" title="二、驾驶辅助系统"></a>二、驾驶辅助系统</h3><p>目前短期内实现完全的自动驾驶难度较大，就连自动驾驶技术最成熟的谷歌也没有做到量产级别。所以关注通往L4级及以上的L2/L3驾驶辅助更具有现实意义。</p>
+<h4 id="1-并线辅助系统（盲区检测系统）"><a href="#1-并线辅助系统（盲区检测系统）" class="headerlink" title="1.并线辅助系统（盲区检测系统）"></a>1.并线辅助系统（盲区检测系统）</h4><p><img src="http://yanxuan.nosdn.127.net/71390bc54e0f4ddc5b49d154ac130444.jpg" alt="1.jpg"></p>
+<p><strong>概念：</strong>由于汽车后视镜本身存在视觉盲区,导致驾驶员无法及时准确地获知盲区内车辆的动向,因此车辆并线剐蹭或碰撞便成为常见的一种交通事故。因此人们想到了并线辅助装置，其原理很简单与我们常见的倒车雷达类似。当车辆在行驶中、在本车后方出现其他车辆时，系统将自动点亮该方向的车外后视镜上的指示标志以作提醒。</p>
+<p><strong>原理：</strong> </p>
+<p><img src="http://yanxuan.nosdn.127.net/05b4424caa295581a83c32a7ca3eb72d.jpg" alt="2.jpg"></p>
+<p><strong>应用：</strong></p>
+<p>现在并线辅助的主要技术大致上分为影像及雷达两种，而后者又可分为24GHz及77GHz二种短波雷达频谱技术。</p>
+<p>影像+雷达：本田品牌部分车型采用影像+雷达技术，在车侧后视镜安装摄像头和雷达，以影像方式监控车侧后方来车。</p>
+<p>雷达：目前大部分车型采用雷达技术，将雷达感测器安装于车侧或后保险杠，可发出微波侦测车侧或车尾之来车。</p>
+<h4 id="2-车道偏离预警系统"><a href="#2-车道偏离预警系统" class="headerlink" title="2.车道偏离预警系统"></a>2.车道偏离预警系统</h4><p>车道偏离预警系统是一种通过报警或振动的方式辅助驾驶员减少汽车因车道偏离而发生交通事故的系统。</p>
+<p><img src="http://yanxuan.nosdn.127.net/55a0950bcb3521029728e6d046dfc521.jpg" alt="4.jpg"></p>
+<p><strong>原理：</strong></p>
+<p>当车道偏离预警系统开启时,系统利用安装在汽车上的图像采集单元获取车辆前方的道路图像,控制单元对图像分析处理,从而获得汽车在当前车道中的位置参数,车辆状态传感器会及时收集车速车辆转向状态等参数,控制单元的决策算法判定是否偏离。如果发生偏离，会触发相应的人机交互单元。</p>
+<p><img src="http://yanxuan.nosdn.127.net/910d759fd89d2232e7a0bcbf28b59860.jpg" alt="5.jpg"></p>
+<h4 id="3-车道保持辅助系统"><a href="#3-车道保持辅助系统" class="headerlink" title="3.车道保持辅助系统"></a>3.车道保持辅助系统</h4><p>车道保持辅助系统是在车道偏离预警系统的基础上对转向和制动系统协调控制,使汽车保持在预定的车道上行驶,减轻驾驶员负担,防止驾驶失误的系统。</p>
+<p><img src="http://yanxuan.nosdn.127.net/00c834c96c10fa60fcd73dfcd7374a6e.jpg" alt="6.jpg"></p>
+<p> 利用视觉传感器采集道路图像,利用转速传感器采集车速信号,利用转向盘转角传感器采集转向信号,然后对车道两侧边界线进行识别,通过比较车线和车辆行驶方向,判断是否偏离行驶车道。如果发生偏离，会会触发转向盘操纵模块使车辆始终位于车道线内。</p>
+<p><img src="http://yanxuan.nosdn.127.net/4aa6f561f380fe7fb8c44200cdb6e64e.jpg" alt="7.jpg"></p>
+<h4 id="4-夜视系统"><a href="#4-夜视系统" class="headerlink" title="4.夜视系统"></a>4.夜视系统</h4><p>夜视系统（Night Vision Device，NVD）是一种源自军事用途的汽车驾驶辅助系统。在这个辅助系统的帮助下，驾驶者在夜间或弱光线的驾驶过程中将获得更高的预见能力，它能够针对潜在危险向驾驶者提供更加全面准确的信息或发出早期警告。</p>
+<h5 id="4-1主动近红外照射"><a href="#4-1主动近红外照射" class="headerlink" title="4.1主动近红外照射"></a>4.1主动近红外照射</h5><p>该系统并不依赖热源，而是通过设备向外发射红外光束，照射目标，并将识别后的数据以图像的形式传递给驾驶者。此技术成本较低、效果较好，目前车辆上大多使用该技术实现夜视功能。</p>
+<p><img src="http://yanxuan.nosdn.127.net/01f43e65bad5e2715f81d8eba8decf41.jpg" alt="8.jpg"></p>
+<p><img src="http://yanxuan.nosdn.127.net/6424f06aeecf340585ba9f60207fab15.jpg" alt="9.jpg"></p>
+<h5 id="4-2微光夜视技术"><a href="#4-2微光夜视技术" class="headerlink" title="4.2微光夜视技术"></a>4.2微光夜视技术</h5><p> 该技术主要功能是利用夜间市区的普通可见光以及仅开启普通前大灯的前提，通过设备放大射入光线实现夜视能力。如果遇到强光源照射，可能会导致设备失灵，所以需要其它技术来弥补此短板。</p>
+<p><img src="http://yanxuan.nosdn.127.net/bed3e54d117ca63ae66214c38e51dcbd.jpg" alt="11.jpg"></p>
+<h5 id="4-3红外热成像技术"><a href="#4-3红外热成像技术" class="headerlink" title="4.3红外热成像技术"></a>4.3红外热成像技术</h5><p>也被称为红外线成像技术，将人们肉眼看不见的红外线转化成为可见光。因为绝对0度以上的物体都要辐射能量，不同温度的物体散发的热量不同，人类、动物和行驶的车辆要比周围环境散发的热量多。夜视系统就能收集这些信息，然后转变成可视的图像，把本来在夜间看不清的物体清楚的呈现在眼前，增加夜间行车的安全性。</p>
+<p><img src="http://yanxuan.nosdn.127.net/2ebf78c60bdb2254551a9d3252965ef2.jpg" alt="10.jpg"></p>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li><p>解决夜间驾驶视野受限问题</p>
+</li>
+<li><p>解决夜间会车眩光问题</p>
+</li>
+<li><p>提升恶劣天气(大雾、雾霾、沙尘天气)下的驾驶视野     </p>
+</li>
+<li><p>价格在三种方案中属最贵</p>
+</li>
+</ul>
+<p><strong>发展：</strong></p>
+<p>成熟的应用热成像技术的产品，会集成目标检测算法，即具备行人、车辆防碰撞预警的功能，大大提高夜间行车的安全性。                               </p>
+<h4 id="5-疲劳预警系统"><a href="#5-疲劳预警系统" class="headerlink" title="5.疲劳预警系统"></a>5.疲劳预警系统</h4><p><img src="http://yanxuan.nosdn.127.net/d22b9132b382cd012da48e375df0dc06.jpg" alt="12.jpg"></p>
+<p>驾驶员疲劳预警系统是指驾驶员精神状态下滑或进入浅层睡眠时,系统会依据驾驶员精神状态指数分别给出语音提示、振动提醒、电脉冲警示等。</p>
+<p><strong>组成：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/342309ed918943f54855f38575f30f46.jpg" alt="13.jpg"></p>
+<p><strong>检测方法：</strong></p>
+<p>①基于驾驶员生理信号（客观性强，准确率高，但是与检测仪器有强相关系，这些检测方法基本都是接触性的检测，都会干扰到驾驶员的正常操作，影响行车的安全，此外不同人存在生理差异）</p>
+<ul>
+<li>脑电信号检测</li>
+<li>心电信号检测</li>
+<li>肌电信号检测</li>
+<li>脉搏信号检测</li>
+<li>呼吸信号检测</li>
+</ul>
+<p>②基于驾驶员生理反应特征（表征疲劳的特征直观明显并且可以非接触策略，但是检测识别的算法是比较复杂的，且检测结果受光线变化以及个体生理状况的影响）</p>
+<ul>
+<li>眼睛特征检测</li>
+<li>视线方向检测</li>
+<li>嘴部状态检测</li>
+<li>头部位置检测</li>
+</ul>
+<p>③基于汽车行驶状态</p>
+<ul>
+<li>基于方向盘的疲劳检测</li>
+<li>汽车行驶速度检测</li>
+<li>车道偏离检测</li>
+</ul>
+<p>④基于多特征信息融合检测方法</p>
+<p>依据信息融合技术,将基于生理特征、驾驶行为和汽车行驶状态相结合是理想的检测方法,大大降低了采用单一方法造成的误警或漏警现象。</p>
+<h4 id="6-自适应巡航系统"><a href="#6-自适应巡航系统" class="headerlink" title="6.自适应巡航系统"></a>6.自适应巡航系统</h4><p><img src="http://yanxuan.nosdn.127.net/1c666dae517f8310283fe7744e9fa331.jpg" alt="3.jpg"></p>
+<h5 id="6-1定速巡航"><a href="#6-1定速巡航" class="headerlink" title="6.1定速巡航"></a>6.1定速巡航</h5><p>  在驾车行驶过程中，驾驶员可以启动定速巡航，之后不需再踩油门，车辆既可按照一定的速度前进。定速巡航控制区域一般在方向盘后方或者集成在多功能方向盘上。开启定速巡航后，驾驶员通过定速巡航的手动调整装置，对车速进行小幅度调整而无需踩油门。当需要减速时，踩下刹车踏板即可自动解除定速巡航，驾驶员可再按钮重新以先前设定的速度恢复定速巡航。</p>
+<p>​     原理：简单地说就是由巡航控制组件读取车速传感器发来的脉冲信号与设定的速度进行比较，从而发出指令由伺服器机械的来调整节气门开度的增大或减小，以使车辆始终保持所设定的速度。电子式多功能定速巡航系统摒除了拉线式定速巡航器的机械控制部分，完全采用精准电子控制，使控制更精确，避免了机械故障的风险。</p>
+<p><img src="http://yanxuan.nosdn.127.net/224a20307eddfd26a14acca64fb96b5c.jpg" alt="14.jpg"></p>
+<p>在平缓的道路上，使用定速巡航可以保持车辆匀速行驶，减少耗油量；在长途驾驶时，定速巡航装置可以把驾驶员的脚从油门踏板上解放出来，从而减少疲劳程度；在有限速的路段，驾驶员可以运用定速巡航控制车速，不再看速度表，把注意力放在路面上，从而可以促进安全。</p>
+<h5 id="6-2自适应巡航"><a href="#6-2自适应巡航" class="headerlink" title="6.2自适应巡航"></a>6.2自适应巡航</h5><p>自适应巡航控制系统（Adaptive Cruise Control，ACC），是一种智能化的自动控制系统，在巡航控制技术的基础上发展而来。除了可依照驾驶者所设定速度行驶外，还可以实现保持预设跟车距离以及随着车距变化自动加速与减速的功能。</p>
+<p>总的来讲，自适应巡航系统由传感器、数字信号处理器以及控制模块三大部分组成。目前市场上常见的传感器有雷达传感器、红外光束以及视频摄像头等几种。信号处理器负责将传感器接收到的信息进行数字处理，最后由控制模块处理收集到的信息进行控制。系统判断需要减速时，最终由ABS系统对车轮实施制动或者变速箱采用降挡的办法，将车速降低。</p>
+<p><img src="http://yanxuan.nosdn.127.net/3d4921d3e7e514034717620bd534f0a7.jpg" alt="15.jpg"></p>
+<p>一般自适应巡航需要车辆达到一定速度之后才可以启动，速度过低会自动解除。</p>
+<h5 id="6-3全速自适应巡航"><a href="#6-3全速自适应巡航" class="headerlink" title="6.3全速自适应巡航"></a>6.3全速自适应巡航</h5><p>全速自适应巡航系统是由自适应巡航系统发展而来，相比自适应巡航，全速自适应巡航的工作范围更大，目前博世新一代系统可以在0-150km/h之间工作，而自适应巡航通常在40-150km/h。</p>
+<h4 id="7-自动泊车辅助系统"><a href="#7-自动泊车辅助系统" class="headerlink" title="7.自动泊车辅助系统"></a>7.自动泊车辅助系统</h4><p>概述：自动泊车辅助系统是利用车载传感器探测有效泊车空间并辅助控制车辆完成泊车操作的一种先进驾驶辅助系统。</p>
+<p>组成：</p>
+<p><img src="http://yanxuan.nosdn.127.net/62e51ece962fb03a8f279a16cf95c551.jpg" alt="16.jpg"></p>
+<p>分类：垂直停车、侧方停车和斜式停车，常见的是前两种，斜式停车只在部分车型中配备。另外部分高端车型除了可以自动将车辆停入车位，还可以实现自动驶离车位，进一步减轻了驾驶员工作，提高了便利性。</p>
+<p><img src="http://yanxuan.nosdn.127.net/96a82f4c2d7ef4157c0c4fb397caab5a.jpg" alt="17.jpg"></p>
+<p><strong>实现：</strong></p>
+<p>1）超声波传感器探测车位</p>
+<p>​    利用车辆自带的超声波传感器，探测出适合的停车空间，然后车辆会自动接管方向盘来控制方向，将车辆停入车位。</p>
+<p>2）摄像头识别车位</p>
+<p>​    车辆能通过摄像头自动检索停车场的停车位置，并在空闲的停车位旁边自动开始驻车辅助操作。按下按钮后，方向盘将自行运作，只需按照提示切换档位，系统就能恰到好处地引导车辆进入停车位。</p>
+<p><strong>发展——自主泊车：</strong>对技术的要求要高上一个等级，是自动驾驶的一个核心分支，就如在2019年百度AI开发者大会上李彦宏宣称的解决“最后一公里”的停车问题，需要汽车按照规划好的路线自动行驶并完成泊车。</p>
+<p>实现自主泊车需要更多的传感器、更复杂的感知、定位、规划等技术，在一些解决方案中，还需要车联网、停车场标准化建设以及数据的协同和互通。</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="http://yanxuan.nosdn.127.net/cb3d0e93101ee46c3ddcb903699f8c6f.jpg" alt="智能网联汽车——传感器与驾驶辅助.jpg"></p>
+<p>给出本文的思维导图，回忆一下~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/传感器/" rel="tag"># 传感器</a>
+          
+            <a href="/tags/驾驶辅助/" rel="tag"># 驾驶辅助</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/智能网联汽车——概述/" rel="next" title="智能网联汽车——概述">
+                <i class="fa fa-chevron-left"></i> 智能网联汽车——概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/13/智能网联汽车——智能化/" rel="prev" title="智能网联汽车——智能化">
+                智能网联汽车——智能化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mr.Chen">
+            
+              <p class="site-author-name" itemprop="name">Mr.Chen</p>
+              <p class="site-description motion-element" itemprop="description">无人驾驶及嵌入式硬件相关。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=332653562" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_42146017" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/chen-kai-xiang-37/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、传感器"><span class="nav-text">一、传感器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-汽车传感器特点"><span class="nav-text">1.汽车传感器特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-种类"><span class="nav-text">2.种类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1视觉传感器"><span class="nav-text">2.1视觉传感器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2激光雷达"><span class="nav-text">2.2激光雷达</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3毫米波雷达"><span class="nav-text">2.3毫米波雷达</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4超声波传感器"><span class="nav-text">2.4超声波传感器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5车载传感器网络"><span class="nav-text">2.5车载传感器网络</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、驾驶辅助系统"><span class="nav-text">二、驾驶辅助系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-并线辅助系统（盲区检测系统）"><span class="nav-text">1.并线辅助系统（盲区检测系统）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-车道偏离预警系统"><span class="nav-text">2.车道偏离预警系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-车道保持辅助系统"><span class="nav-text">3.车道保持辅助系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-夜视系统"><span class="nav-text">4.夜视系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1主动近红外照射"><span class="nav-text">4.1主动近红外照射</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2微光夜视技术"><span class="nav-text">4.2微光夜视技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3红外热成像技术"><span class="nav-text">4.3红外热成像技术</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-疲劳预警系统"><span class="nav-text">5.疲劳预警系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-自适应巡航系统"><span class="nav-text">6.自适应巡航系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1定速巡航"><span class="nav-text">6.1定速巡航</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2自适应巡航"><span class="nav-text">6.2自适应巡航</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3全速自适应巡航"><span class="nav-text">6.3全速自适应巡航</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-自动泊车辅助系统"><span class="nav-text">7.自动泊车辅助系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、总结"><span class="nav-text">三、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '1AX6IUmgjADhbvLRKGnVueSS-gzGzoHsz',
+        appKey: 'htxqQVac9IuATzEYNkaOwhBL',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
