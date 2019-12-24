@@ -152,7 +152,7 @@
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/4c4d588fd512dae892b11b153d9e11cf.png">
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/61f77c91845221874752c0dd93f25aad.png">
 <meta property="og:image" content="http://yanxuan.nosdn.127.net/baec3a2ecf37ab7badb91d722e953338.jpg">
-<meta property="og:updated_time" content="2019-12-24T09:16:46.520Z">
+<meta property="og:updated_time" content="2019-12-24T13:41:28.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="智能网联汽车——深度学习与无人驾驶（二）">
 <meta name="twitter:description" content="一、卷积神经网络卷积神经网络，也叫做convert，它是计算机视觉中图像分类问题几乎都在使用的一种深度学习模型。首先给出一张用于图像分类问题的一种卷积神经网络架构的图像。">
@@ -508,12 +508,12 @@
 
 <h4 id="1-输入层"><a href="#1-输入层" class="headerlink" title="1.输入层"></a>1.输入层</h4><p>对于包含两个空间轴(<strong>高度</strong>和<strong>宽度</strong>)和一个<strong>深度</strong>轴(也叫<strong>通道轴</strong>)的3D张量,其卷积也叫做<strong>特征图</strong>( feature map)。对于RGB图像,深度轴的维度大小等于3,因为图像有3个颜色通道：红色、绿色和蓝色。对于黑白图像(比如 MNIST数字图像),深度等于1(表示灰度等级)。</p>
 <p>从输入层开始,卷积神经网络通过不同的神经网络结构将上一层的三维矩阵转化为下一层的三维矩阵,直到最后的全连接层。</p>
-<h4 id="2-卷积层"><a href="#2-卷积层" class="headerlink" title="2.卷积层"></a>2.卷积层</h4><p>1）全连接层和卷机层的根本区别在于，全连接层从输入特征空间中学习到的是全局模式（涉及所有像素的模式），而卷机层学到的是局部模式，对于图像来说，学到的就是输入图像的二维小窗口中的边缘、纹理等。</p>
+<h4 id="2-卷积层"><a href="#2-卷积层" class="headerlink" title="2.卷积层"></a>2.卷积层</h4><p>1）全连接层和卷积层的根本区别在于，全连接层从输入特征空间中学习到的是全局模式（涉及所有像素的模式），而卷积层学到的是局部模式，对于图像来说，学到的就是输入图像的二维小窗口中的边缘、纹理等。</p>
 <p><img src="http://yanxuan.nosdn.127.net/70729a5bf5c6acd7d89ca35f12ed516c.png" alt="1.png"></p>
 <p>2）这个重要特性使卷积神经网络具有以下两个有趣的性质。<br>    卷积神经网络学到的模式具有<strong>平移不变性</strong>。卷积神经网络在图像右下角学到某个模式之后,它可以在任何地方识别这个模式,比如左上角。对于密集连接网络来说,如果模式出现在新的位置,它只能重新学习这个模式。这使得卷积神经网络在处理图像时可以高效利用数据。它只需要更少的训练样本就可以学到具有泛化能力的数据表示。<br>    卷积神经网络可以学到<strong>模式的空间层次结构</strong>。第一个卷积层将学习较小的局部模式(比如边缘),第二个卷积层将学习由第一层特征组成的更大的模式,以此类推。这使得卷积神经网络可以有效地学习越来越杂、越抽象的视觉概念。</p>
 <p><img src="http://yanxuan.nosdn.127.net/0dee6d98084ce42561f3f15d5fb0f84b.png" alt="2.png"></p>
 <p>视觉世界形成了视觉模块的空间层次结构：超局部的边缘组合成局部的对象，比如眼睛或者耳朵，这些局部对象又组合成高级概念，比如“猫”。</p>
-<p>3）<strong>卷积运算</strong>从输入层中提取图块,并对所有这些图块应用相同的变换,生成<strong>输出特征图</strong>。该输出特征图仍是一个3D张量,具有宽度和高度,其深度一般为<strong>过滤器</strong>的数量。比如在MNIST示例中，第一个卷机层接收一个大小为（28,28,1）的特征图，经过第一层的卷积运算后，输出一个大小为（26,26,32）的特征图，即它在输入上计算32个过滤器。</p>
+<p>3）<strong>卷积运算</strong>从输入层中提取图块,并对所有这些图块应用相同的变换,生成<strong>输出特征图</strong>。该输出特征图仍是一个3D张量,具有宽度和高度,其深度一般为<strong>过滤器</strong>的数量。比如在MNIST示例中，第一个卷积层接收一个大小为（28,28,1）的特征图，经过第一层的卷积运算后，输出一个大小为（26,26,32）的特征图，即它在输入上计算32个过滤器。</p>
 <p><strong>4）注意：</strong></p>
 <p>卷积由以下两个关键参数所定义。</p>
 <ul>
@@ -546,7 +546,7 @@
 <p><img src="http://yanxuan.nosdn.127.net/2aff78ec245f6d66e3725bd78ba52ec9.png" alt="13.png"></p>
 <h4 id="1-图像分类"><a href="#1-图像分类" class="headerlink" title="1.图像分类"></a>1.图像分类</h4><h5 id="1-1AlexNet"><a href="#1-1AlexNet" class="headerlink" title="1. 1AlexNet"></a>1. 1AlexNet</h5><p>在2012年夺得了ImageNet图像分类的冠军，而且远远超过当年的第二名。架构有5个卷积层和3个最大池化层，使用了ReLU激活函数、dropout（随机失活）层、overlap pooling（重叠池化）、LRN(Local Responce Normalization，局部响应归一化)、数据增强及CUDA加速等技术。</p>
 <p><img src="http://yanxuan.nosdn.127.net/e3a893511de1d0845e8688940bf6c288.png" alt="AlexNet.png"></p>
-<h5 id="1-2VGG-Net"><a href="#1-2VGG-Net" class="headerlink" title="1.2VGG Net"></a>1.2<strong>VGG Net</strong></h5><p>ILSVRC2014的亚军，结构非常简洁，反复堆叠3x3的小型卷积核和2x2的最大池化层构建。相比于 AlexNet 有更小的卷积核和更深的层级。但是参数数量太多。</p>
+<h5 id="1-2VGG-Net"><a href="#1-2VGG-Net" class="headerlink" title="1.2VGG Net"></a>1.2<strong>VGG Net</strong></h5><p>ILSVRC2014的亚军，结构非常简洁，反复堆叠3x3的小型卷积核和2x2的最大池化层构建。相比于 AlexNet 有更小的卷积核和更深的层级，但是参数数量太多。</p>
 <p><img src="http://yanxuan.nosdn.127.net/b742d334d67ed214ae9bc5edd89727ca.jpg" alt="VGG Net.jpg"></p>
 <h5 id="1-3GoogleNet"><a href="#1-3GoogleNet" class="headerlink" title="1.3GoogleNet"></a>1.3GoogleNet</h5><p>2014年ImageNet竞赛的冠军。该架构中，随着深度增加（它包含 22 层，而 VGG 只有 19 层），研究者还开发了一种叫作「Inception 模块」的新型方法。</p>
 <p><img src="http://yanxuan.nosdn.127.net/93a0a6231eaa841aa3d24d5fb945abc9.png" alt="Inception.png"></p>
@@ -586,7 +586,7 @@
 <p><strong>6）YOLO-v2:</strong>可以在速度和准确率上进行tradeoff(折中)：在67帧率下，v2在VOC2007数据集的mAP可以达到76.8; 在40帧率下，mAP可以达到78.6。</p>
 <p>加入当下热门的Batch Normalize（BN层的添加直接将mAP硬拔了2个百分点，这一操作在yolo_v3上依然有所保留，BN层从v2开始便成了yolo算法的标配。）以及残差网络结构外；</p>
 <p>还针对性的训练了一个高分辨率的分类网络（把这种更高分辨率的分类网络（448x448）用到detection上，发现map提升了4% ）。</p>
-<p><strong>7）YOLO-v3（检测240个种类）:</strong>采用多尺度预测（13x13x255,26x26x255,52x52x255）及更好的backbone网络(darknet-53,可以和resnet-152正面刚)，分类损失采用binary cross-entropy损失函数替换softmax损失函数.</p>
+<p><strong>7）YOLO-v3（检测240个种类）:</strong>采用多尺度预测（13x13x255,26x26x255,52x52x255）及更好的backbone网络(darknet-53,可以和resnet-152正面刚)，分类损失采用binary cross-entropy损失函数替换softmax损失函数。</p>
 <p><img src="http://yanxuan.nosdn.127.net/4c4d588fd512dae892b11b153d9e11cf.png" alt="10.png"></p>
 <p><strong>8）SSD</strong>：由于 YOLO 网络的 S×S 网格的粗糙划分导致了回归的目标位置误差较大,SSD 借鉴了区域提名的思想作出改进,使用与 Faster R-CNN 类似的 RPN 网络,不同的是 SSD 在 CNN 的多个特征层上使用 RPN 之后再作分类和边框回归,原图上小物体的检测也能有较准确的检测结果。与 YOLO 相比,SSD 仍能保持快速的检测速度,并且改进了小物体的定位精确度。</p>
 <p><img src="http://yanxuan.nosdn.127.net/61f77c91845221874752c0dd93f25aad.png" alt="7.png"></p>
