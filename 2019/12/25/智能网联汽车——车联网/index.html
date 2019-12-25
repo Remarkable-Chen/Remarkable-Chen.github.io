@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="车际网,车云网,车内网,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、什么是车联网1.研究背景交通安全:全球每年约有124万人死于交通事故,每年交通事故造成的经济损失高达5180亿美元（引自WHO2013年道路安全全球现状报告)； 交通效率:交通拥堵让北京市年损失占GDP的7.5%,堵塞严重影响人们出行,如2010.9.17共145条道路塞车(北京市交通发展研究中心《2011北京市交通发展年度报告》的评估报告）；">
+<meta name="keywords" content="车际网,车云网,车内网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能网联汽车——车联网">
+<meta property="og:url" content="https://remarkable-chen.github.io/2019/12/25/智能网联汽车——车联网/index.html">
+<meta property="og:site_name" content="July">
+<meta property="og:description" content="一、什么是车联网1.研究背景交通安全:全球每年约有124万人死于交通事故,每年交通事故造成的经济损失高达5180亿美元（引自WHO2013年道路安全全球现状报告)； 交通效率:交通拥堵让北京市年损失占GDP的7.5%,堵塞严重影响人们出行,如2010.9.17共145条道路塞车(北京市交通发展研究中心《2011北京市交通发展年度报告》的评估报告）；">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/41cdc1d5ab4c51040b39cb9711a60641.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/64a641d3dec7bffd9b06b1b0e791902d.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/441febdf72ea4b218b0e0c6ca24ede3c.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/91b6a9d1b97f698eb2e7b4e4f1936821.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8d19cb004e01d6b71b1ce8a40ade5dc4.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/2f82cfdee7453a018bda597cafbde8a7.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/3d3f2fbd58c1f57fc77e72e31837a992.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/48bfcc95548c07038827e247808647f3.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/4892b43f7363a822029f624b684d3daa.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/c97008cb53cf2677c43c3b885a39d208.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/028349885bf0d650436f362f2a903faf.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/bd8c33bb19f242e9cb53b8edaf2469dc.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/8862a64510d05459048e4e8e200dbabc.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/9ad375bea09ebe550b36bd69ed74e268.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/279b1a51e2d5c60a9e2d0ca2ef844a33.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/9cfed3f453895d55464a398b262776d4.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/937ed395f92a5bca557b9db09bbd4cbf.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/79a38c50bd6b8382a7f045ac4bf37814.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/3ddc86f908fc99cd101e3cad01701fd9.png">
+<meta property="og:image" content="http://yanxuan.nosdn.127.net/b77f5c7f296b65b57f317a9d3dd4fd97.jpg">
+<meta property="og:updated_time" content="2019-12-25T01:12:30.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能网联汽车——车联网">
+<meta name="twitter:description" content="一、什么是车联网1.研究背景交通安全:全球每年约有124万人死于交通事故,每年交通事故造成的经济损失高达5180亿美元（引自WHO2013年道路安全全球现状报告)； 交通效率:交通拥堵让北京市年损失占GDP的7.5%,堵塞严重影响人们出行,如2010.9.17共145条道路塞车(北京市交通发展研究中心《2011北京市交通发展年度报告》的评估报告）；">
+<meta name="twitter:image" content="http://yanxuan.nosdn.127.net/41cdc1d5ab4c51040b39cb9711a60641.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://remarkable-chen.github.io/2019/12/25/智能网联汽车——车联网/">
+
+
+
+
+
+  <title>智能网联汽车——车联网 | July</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">July</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just u like yourself。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://remarkable-chen.github.io/2019/12/25/智能网联汽车——车联网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="July">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">智能网联汽车——车联网</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T09:12:16+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+			
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/智能网联汽车/" itemprop="url" rel="index">
+                    <span itemprop="name">智能网联汽车</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/25/智能网联汽车——车联网/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/25/智能网联汽车——车联网/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、什么是车联网"><a href="#一、什么是车联网" class="headerlink" title="一、什么是车联网"></a>一、什么是车联网</h3><h4 id="1-研究背景"><a href="#1-研究背景" class="headerlink" title="1.研究背景"></a>1.研究背景</h4><p><strong>交通安全:</strong>全球每年约有124万人死于交通事故,每年交通事故造成的经济损失高达5180亿美元（引自WHO2013年道路安全全球现状报告)；</p>
+<p><strong>交通效率:</strong>交通拥堵让北京市年损失占GDP的7.5%,堵塞严重影响人们出行,如2010.9.17共145条道路塞车(北京市交通发展研究中心《2011北京市交通发展年度报告》的评估报告）；</p>
+<a id="more"></a>
+
+<h4 id="2-研究意义"><a href="#2-研究意义" class="headerlink" title="2.研究意义"></a>2.研究意义</h4><p>自主式感知不仅需要留意周边的其他的车辆，还必须完全依赖自身能力检测到周围的道路、车道等一系列的因素。而且，它受天气影响比较大，会影响它的探测的距离与精度，并且没有办法对周围的障碍物进行预测。</p>
+<p>车联网主要是解决通信问题，具体来说，通过车辆间通信的V2X系统，在车辆之间进行一个实时高效的通信，可以有效地解决传统的激光、雷达、摄像头分析等存在的距离、角度的缺陷，全方位的提升汽车主动安全系统的感知范围和感知的程度。</p>
+<h4 id="3-概念"><a href="#3-概念" class="headerlink" title="3.概念"></a>3.概念</h4><p>车联网(汽车移动互联网)是利用先进传感技术、网络技术、计算技术、控制技术、智能技术,对道路交通进行全面感知，对每部汽车进行交通全程控制,对每条道路进行交通全时空控制,实现道路交通“零堵塞”、“零伤亡”和“极限通行能力“的专门控制网络。</p>
+<p><img src="http://yanxuan.nosdn.127.net/41cdc1d5ab4c51040b39cb9711a60641.png" alt="1.png"></p>
+<h4 id="4-车联网中的通信"><a href="#4-车联网中的通信" class="headerlink" title="4.车联网中的通信"></a>4.车联网中的通信</h4><p>车联网是以车内网、车际网和车载移动互联网为基础,按照约定的通信协议和数据交换标准,在车和车、车和人、车和环境之间进行无线通信及信息传输,实现车辆智能化控制,智能动态服务,智能交通管理的一体化网络。</p>
+<p><img src="http://yanxuan.nosdn.127.net/64a641d3dec7bffd9b06b1b0e791902d.png" alt="2.png"></p>
+<ul>
+<li>车内网是指通过应用成熟的总线技术建立一个标准化的整车网络。</li>
+<li>车云(车载移动互联)网是指车载终端通过3G/4G/5G等通信技术与互联网进行无线连<br>接。</li>
+<li>车际网是指基于DSRC技术和IEEE802.11系列无线局域网协议组建的动态网络。</li>
+</ul>
+<h3 id="二、车联网的应用场景"><a href="#二、车联网的应用场景" class="headerlink" title="二、车联网的应用场景"></a>二、车联网的应用场景</h3><h4 id="1-行车安全类"><a href="#1-行车安全类" class="headerlink" title="1.行车安全类"></a>1.行车安全类</h4><p><strong>1）行人安全保证</strong>：</p>
+<p><img src="http://yanxuan.nosdn.127.net/441febdf72ea4b218b0e0c6ca24ede3c.png" alt="3.png"></p>
+<ul>
+<li>通过路侧设备检测并跟踪行人</li>
+<li>路侧设备将行人状态告诉周围的车辆</li>
+<li>车辆根据速度、位置判断是否会相撞</li>
+<li>若事故不可避免,自动紧急刹车</li>
+</ul>
+<p><strong>2）碰撞预警：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/91b6a9d1b97f698eb2e7b4e4f1936821.png" alt="4.png"></p>
+<ul>
+<li>实时共享前方车辆或障碍物的速度和位置</li>
+<li>车载系统计算两车的行驶轨迹,判断是否会发生碰撞</li>
+<li>当碰撞不可避免时,启动紧急刹车</li>
+</ul>
+<h4 id="2-交通效率类"><a href="#2-交通效率类" class="headerlink" title="2.交通效率类"></a>2.交通效率类</h4><p><img src="http://yanxuan.nosdn.127.net/8d19cb004e01d6b71b1ce8a40ade5dc4.png" alt="5.png"></p>
+<h4 id="3-信息娱乐类"><a href="#3-信息娱乐类" class="headerlink" title="3.信息娱乐类"></a>3.信息娱乐类</h4><p><strong>1）动态导航</strong></p>
+<ul>
+<li>驾驶员输入目的地</li>
+<li>RSU将车辆信息传给控制中心</li>
+<li>控制中心根据交通状况判断最佳路径</li>
+<li>将各道路车流状况最佳路径和地图传回车内</li>
+</ul>
+<p><img src="http://yanxuan.nosdn.127.net/2f82cfdee7453a018bda597cafbde8a7.png" alt="6.png"></p>
+<h3 id="三、车联网的系统架构"><a href="#三、车联网的系统架构" class="headerlink" title="三、车联网的系统架构"></a>三、车联网的系统架构</h3><h4 id="1-整体系统"><a href="#1-整体系统" class="headerlink" title="1.整体系统"></a>1.整体系统</h4><h5 id="1）中心子系统"><a href="#1）中心子系统" class="headerlink" title="1）中心子系统"></a>1）中心子系统</h5><p><img src="http://yanxuan.nosdn.127.net/3d3f2fbd58c1f57fc77e72e31837a992.png" alt="19.png"></p>
+<h5 id="2）道路子系统"><a href="#2）道路子系统" class="headerlink" title="2）道路子系统"></a>2）道路子系统</h5><p><img src="http://yanxuan.nosdn.127.net/48bfcc95548c07038827e247808647f3.png" alt="20.png"></p>
+<h5 id="3）车辆子系统"><a href="#3）车辆子系统" class="headerlink" title="3）车辆子系统"></a>3）车辆子系统</h5><p><img src="http://yanxuan.nosdn.127.net/4892b43f7363a822029f624b684d3daa.png" alt="21.png"></p>
+<h5 id="4）行人子系统"><a href="#4）行人子系统" class="headerlink" title="4）行人子系统"></a>4）行人子系统</h5><ul>
+<li>人所携带的手持智能终端设备</li>
+<li>公交车站的电子显示屏</li>
+</ul>
+<h4 id="2-信息流动"><a href="#2-信息流动" class="headerlink" title="2.信息流动"></a>2.信息流动</h4><p><img src="http://yanxuan.nosdn.127.net/c97008cb53cf2677c43c3b885a39d208.png" alt="18.png"></p>
+<h4 id="3-部署案例"><a href="#3-部署案例" class="headerlink" title="3.部署案例"></a>3.部署案例</h4><p><img src="http://yanxuan.nosdn.127.net/028349885bf0d650436f362f2a903faf.png" alt="17.png"></p>
+<h3 id="四、车联网通信技术"><a href="#四、车联网通信技术" class="headerlink" title="四、车联网通信技术"></a>四、车联网通信技术</h3><h4 id="1-车际网"><a href="#1-车际网" class="headerlink" title="1.车际网"></a>1.车际网</h4><p>​    专用中短距离通信技术,实现车车/车路协同,包括DSRC、LTEV,5G<br>​    时延极短,可靠性高,需要支撑主动安全应用</p>
+<h5 id="1-1DSRC"><a href="#1-1DSRC" class="headerlink" title="1.1DSRC"></a>1.1DSRC</h5><p><strong>信道分配：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/bd8c33bb19f242e9cb53b8edaf2469dc.png" alt="Snipaste_2019-12-15_23-41-49.png"></p>
+<p>中心频段是在5.9GHz，总共有75MHz的频带宽度，前面的5MHz被预留，后面的70MHz被平均分成7个信道，有一个控制信道，其他六个都是服务信道。172和184是用于公共安全专用信道，比如说和生命财产相关的应用就在这两个信道当中使用。</p>
+<p><strong>通信协议栈:</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/8862a64510d05459048e4e8e200dbabc.png" alt="DSRC通信协议栈.png"></p>
+<h5 id="1-2ETC（近距离车路通讯技术）"><a href="#1-2ETC（近距离车路通讯技术）" class="headerlink" title="1.2ETC（近距离车路通讯技术）"></a>1.2ETC（近距离车路通讯技术）</h5><p>它是通过安装在车辆上的车载装置和安装在收费站车道上的天线之间进行无线通信和信息交换。</p>
+<p><strong>组成：</strong></p>
+<ul>
+<li>车辆自动识别系统：包括用于车际网的车载单元OBU（存在车辆的识别信息，一般安装于车辆前面的挡风玻璃上）、路边单元RSU（安装于收费站旁边）、环路感应器（安装于车道地面下）等组成</li>
+<li>中心管理系统</li>
+<li>其他辅助设施</li>
+</ul>
+<p><strong>ETC与DSRC的区别（横线处）：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/9ad375bea09ebe550b36bd69ed74e268.png" alt="通信技术(横线为两者区别).png"></p>
+<p><strong>ETC与DSRC的关系：</strong></p>
+<ul>
+<li><p>专用短距离通信技术(DSRC)在美囯被用于和WAVE协议相关的无线电频谱或技术。美国机动车工程师学会(SAE)已经明确提出WAVE协议要使用5.9GHz的频带。</p>
+</li>
+<li><p>在美国以外,DSRC可能指的是一个使用5.8GHz频带的不同的无线电技术,例如电子收费( Electronic Fee CollectionEFC)。</p>
+</li>
+<li><p>ETC可以作为一个单独的系统独立运行,也可以通过实现了包括IEEE160911标准的DSRC系统来提供支付服务。</p>
+</li>
+</ul>
+<h5 id="1-3LTE-V"><a href="#1-3LTE-V" class="headerlink" title="1.3LTE-V"></a>1.3LTE-V</h5><p>LTE-V类似于基站发射4G信号,比前面那种靠WiFi的更稳定,让车与车之间的沟通更便利。被认为是实现车联网的重要基石，基于4.5G网络以LTE蜂窝网络作为V2X的基础，面向未来5G的重点研究方向。也是车联网的专有协议，面向车联网应用场景，实现车与车、车与路测设施、车与人、车与网络的互联和数据传输，也就是V2X。</p>
+<p>为了应对车辆主动安全、行车效率、车载娱乐等多场景不同的需求，LTE-V采用的是广域蜂窝式和短程直通式的通信，前者是基于现有蜂窝技术的扩展，主要承载着传统的车联网业务，后者引入LTE—D2D，由于LTE-D具备了能够寻找500公尺以内数以千计设备的能力，因此能让两个以上最接近LTE-D设备在网内通信。</p>
+<p><strong>广域蜂窝式通信：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/279b1a51e2d5c60a9e2d0ca2ef844a33.png" alt="14.png"></p>
+<p><strong>短程直通式通信：</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/9cfed3f453895d55464a398b262776d4.png" alt="13.png"></p>
+<p><strong>LTE-V与DSRC的区别</strong></p>
+<p><img src="http://yanxuan.nosdn.127.net/937ed395f92a5bca557b9db09bbd4cbf.png" alt="15.png"></p>
+<h5 id="1-4智能交通通信技术演进"><a href="#1-4智能交通通信技术演进" class="headerlink" title="1.4智能交通通信技术演进"></a>1.4智能交通通信技术演进</h5><p><img src="http://yanxuan.nosdn.127.net/79a38c50bd6b8382a7f045ac4bf37814.png" alt="16.png"></p>
+<h4 id="2-车云网"><a href="#2-车云网" class="headerlink" title="2.车云网"></a>2.车云网</h4><p><img src="http://yanxuan.nosdn.127.net/3ddc86f908fc99cd101e3cad01701fd9.png" alt="7.png"></p>
+<p><strong>概述：</strong>车云网目前主要提供 Telematics服务, Telematics是指通过车载计算机系统、无线通信技术、卫星导航装置、互联网信息技术向车主提供驾驶所需的包括汽车安防、车载通信、导航定位、交通信息、新闻资讯、娱乐应用等功能的综合信息服务系统。    </p>
+<p><strong>优缺点：</strong>覆盖范围广,能够与 Internet连接,时延较大,不适合紧急安全应用</p>
+<p><strong>实例：</strong></p>
+<ul>
+<li>通用的安吉星</li>
+<li>上汽的inkaNet</li>
+</ul>
+<h4 id="3-车内网"><a href="#3-车内网" class="headerlink" title="3.车内网"></a>3.车内网</h4><p>驾驶辅助系统及娱乐信息系统等功能大幅增加,需要高带宽、高实时性、高可靠性的车载通信网络；车载以太网由于具有高数据带宽和高通信速率,非常适合汽车ADAS系统以及车载信息娱乐系统的应用。</p>
+<p>目前已在全球范围内形成了openAlliance、AVnu等联盟以推进汽车以太网标准的制定工作。</p>
+<p><strong>分类：</strong></p>
+<ul>
+<li>车与内部传感器的有线连接, 如CAN BUS、高速以太网</li>
+<li>车机与手机等设备的无线连接,包括蓝牙、WiFi、NFC</li>
+</ul>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="http://yanxuan.nosdn.127.net/b77f5c7f296b65b57f317a9d3dd4fd97.jpg" alt="智能网联汽车——车联网.jpg"></p>
+<p>给出本文的思维导图，回忆一下~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Imontage.jpg" alt="Mr.Chen wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/车际网/" rel="tag"># 车际网</a>
+          
+            <a href="/tags/车云网/" rel="tag"># 车云网</a>
+          
+            <a href="/tags/车内网/" rel="tag"># 车内网</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/24/智能网联汽车——深度学习与无人驾驶（二）/" rel="next" title="智能网联汽车——深度学习与无人驾驶（二）">
+                <i class="fa fa-chevron-left"></i> 智能网联汽车——深度学习与无人驾驶（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mr.Chen">
+            
+              <p class="site-author-name" itemprop="name">Mr.Chen</p>
+              <p class="site-description motion-element" itemprop="description">无人驾驶及嵌入式硬件相关。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=332653562" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_42146017" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/chen-kai-xiang-37/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什么是车联网"><span class="nav-text">一、什么是车联网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-研究背景"><span class="nav-text">1.研究背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-研究意义"><span class="nav-text">2.研究意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-概念"><span class="nav-text">3.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-车联网中的通信"><span class="nav-text">4.车联网中的通信</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、车联网的应用场景"><span class="nav-text">二、车联网的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-行车安全类"><span class="nav-text">1.行车安全类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-交通效率类"><span class="nav-text">2.交通效率类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-信息娱乐类"><span class="nav-text">3.信息娱乐类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、车联网的系统架构"><span class="nav-text">三、车联网的系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-整体系统"><span class="nav-text">1.整体系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）中心子系统"><span class="nav-text">1）中心子系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）道路子系统"><span class="nav-text">2）道路子系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）车辆子系统"><span class="nav-text">3）车辆子系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4）行人子系统"><span class="nav-text">4）行人子系统</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-信息流动"><span class="nav-text">2.信息流动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-部署案例"><span class="nav-text">3.部署案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、车联网通信技术"><span class="nav-text">四、车联网通信技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-车际网"><span class="nav-text">1.车际网</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1DSRC"><span class="nav-text">1.1DSRC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2ETC（近距离车路通讯技术）"><span class="nav-text">1.2ETC（近距离车路通讯技术）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3LTE-V"><span class="nav-text">1.3LTE-V</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4智能交通通信技术演进"><span class="nav-text">1.4智能交通通信技术演进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-车云网"><span class="nav-text">2.车云网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-车内网"><span class="nav-text">3.车内网</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、总结"><span class="nav-text">五、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '1AX6IUmgjADhbvLRKGnVueSS-gzGzoHsz',
+        appKey: 'htxqQVac9IuATzEYNkaOwhBL',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
