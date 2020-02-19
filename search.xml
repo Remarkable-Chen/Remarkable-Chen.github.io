@@ -13,7 +13,7 @@
   <entry>
     <title><![CDATA[演讲比赛流程管理系统]]></title>
     <url>%2F2020%2F01%2F19%2F%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[本文是基于STL的演讲比赛流程管理系统。]]></content>
       <categories>
         <category>小项目</category>
       </categories>
@@ -163,8 +163,8 @@
         <category>工具</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>GPU</tag>
+        <tag>Linux</tag>
         <tag>RTX2060</tag>
       </tags>
   </entry>
@@ -286,8 +286,8 @@
       </categories>
       <tags>
         <tag>GPU</tag>
-        <tag>Win10</tag>
         <tag>RTX2060</tag>
+        <tag>Win10</tag>
       </tags>
   </entry>
   <entry>
@@ -298,8 +298,8 @@
         <category>工具</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>Linux</tag>
+        <tag>ubuntu</tag>
         <tag>VMware Tools</tag>
       </tags>
   </entry>
