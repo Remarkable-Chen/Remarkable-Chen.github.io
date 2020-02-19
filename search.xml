@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2020%2F01%2F29%2FChrome%E6%B5%8F%E8%A7%88%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[如何高效玩转CHROME浏览器 设置-&gt;启动时-&gt;打开特定网页或一组网页]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2020%2F01%2F29%2F%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[版本管理工具-Git]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[演讲比赛流程管理系统]]></title>
+    <url>%2F2020%2F01%2F19%2F%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>小项目</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[基于Tkinter的音乐播放器]]></title>
     <url>%2F2019%2F12%2F30%2F%E5%9F%BA%E4%BA%8ETkinter%E7%9A%84%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%2F</url>
     <content type="text"><![CDATA[1.结果网易云音乐没有版权，听不了周杰伦的歌，连搜索也都未果。QQ音乐可以搜到周董的歌，但是99%的歌曲都是付费歌曲。而又特别想听他的歌曲，那么怎么样才能一次性听个够呢！今天介绍的这款音乐播放器就可以做到。在公众号回复关键词“周杰伦”，就可以获得该播放器的百度云链接，下载到本地后可直接使用！ 2.前提这是百度云中的文件夹。 第一条，将下载好的“Music”文件夹保存在F盘下，然后就不要移动该文件夹的位置。（类似于软件安装目录）。 “周杰伦”文件夹可随意放置，里面是周杰伦的若干首歌曲，已经按专辑排好顺序。经过尝试，周董的歌曲分享链接立马就失效了。特别想要的可以在后台给我留言哈，可以加百度云好友分享。 第二条，双击exe文件，默认每次打开就会自动播放七里香这首歌，可提前减小电脑系统音量。 第三条，你需要看到我这篇文章，很明显这一条你已经做到了（手动滑稽）。 3.正文下面就可以听周董的歌了，一次性听个爽！ 参考&lt;https://blog.csdn.net/jjsjsjjdj/article/details/102761779&gt; 3.1音乐文件读取功能点击“打开文件夹”，就会弹出对话框，选择一个文件夹后就会将该文件夹中的歌曲加载到播放列表中。 下图是程序函数实现对应的功能。 3.2基本功能点击对应的按钮，就会触发对应的功能，这个没什么好说的。 3.3下载功能在搜索框搜索歌曲，然后还可以下载到指定文件夹，并且下载的歌曲名还会加载到播放列表里。 本音乐播放器搜索结果为该网址（http://music.bbbbbb.me）搜索结果。 3.4播放模式功能可以实现顺序、单曲和随机播放模式的切换。 3.5计时器功能当前歌曲的进度以及滑动条的变化依赖于计时器，相当于在保持界面一直显示的线程下，多加了一个计时器线程。 3.6面板区就是看到的界面。 3.7其他1）本程序使用Tkinter编写，Tkinter不支持界面自适应大小，故直接固定界面大小为480x400。 2）直接用Pyinstaller打包，会默认把所有的库一起打包导致exe文件特别大，有238M。故考虑使用virtualenv新建一个虚拟环境，然后把本程序使用到的库打包，大大缩小了exe文件的大小，为12M。 3）源程序文件我也一起在百度云释放了，感兴趣的可以自己二次开发，比如可以新增根据搜索结果，在线播放歌曲的功能。 参考https://blog.csdn.net/larasse/article/details/80257495 参考https://blog.csdn.net/qq_33648725/article/details/96836706]]></content>
@@ -265,8 +286,8 @@
       </categories>
       <tags>
         <tag>GPU</tag>
-        <tag>RTX2060</tag>
         <tag>Win10</tag>
+        <tag>RTX2060</tag>
       </tags>
   </entry>
   <entry>
